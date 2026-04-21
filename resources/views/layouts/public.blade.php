@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Logistax News')</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="images/logo.png" href="{{ asset('images/logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -27,14 +27,6 @@
                     alt="Logistax"
                     class="h-10 w-auto md:h-11 object-contain"
                 >
-                <div class="min-w-0">
-                    <span class="block text-xl md:text-2xl tracking-tight font-semibold text-[#0F4C6C] group-hover:text-[#3FA7D6] transition-colors truncate">
-                        Logistax Newsroom
-                    </span>
-                    <span class="block text-[11px] uppercase tracking-[0.24em] text-[#0F4C6C]/70 mt-1 truncate">
-                        Tax · Accounting · Law
-                    </span>
-                </div>
             </a>
 
             <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-[#0F4C6C]">

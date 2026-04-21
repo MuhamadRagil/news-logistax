@@ -17,15 +17,30 @@
 <section class="grid lg:grid-cols-12 gap-8 border-b border-[#0F4C6C]/15 pb-10">
     <div class="lg:col-span-7">
         @if($featured)
-            <p class="inline-flex items-center gap-2 rounded-full border border-[#3FA7D6]/40 bg-[#3FA7D6]/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[#0F4C6C]">Lead Story</p>
+            <p class="inline-flex items-center gap-2 rounded-full border border-[#3FA7D6]/40 bg-[#3FA7D6]/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[#0F4C6C]">
+                Lead Story
+            </p>
+
+            @if($featured->featuredImage)
+                <a href="{{ route('articles.show', $featured->slug) }}" class="block mt-4 overflow-hidden rounded-2xl border border-[#0F4C6C]/10 bg-[#F8FAFC]">
+                    <img
+                        class="w-full h-[280px] md:h-[360px] object-cover"
+                        src="{{ asset('storage/' . $featured->featuredImage->path) }}"
+                        alt="{{ $featured->featuredImage->alt_text ?: $featured->title }}"
+                    >
+                </a>
+            @endif
+
             <a href="{{ route('articles.show', $featured->slug) }}" class="block mt-4 group">
                 <h1 class="text-3xl md:text-5xl leading-tight font-semibold text-[#0F4C6C] max-w-4xl group-hover:text-[#3FA7D6] transition-colors">
                     {{ $featured->title }}
                 </h1>
             </a>
+
             <p class="mt-4 text-[#0F4C6C]/80 leading-relaxed text-base md:text-lg max-w-2xl">
                 {{ $featured->excerpt }}
             </p>
+
             <div class="mt-5 text-sm text-[#0F4C6C]/70 flex gap-4">
                 <span>{{ $featured->category?->name }}</span>
                 <span>•</span>
@@ -62,9 +77,20 @@
             <h2 class="text-xl font-semibold text-[#0F4C6C]">Latest Updates</h2>
             <span class="h-px w-20 bg-[#3FA7D6]/60"></span>
         </div>
+
         <div class="grid md:grid-cols-2 gap-5">
             @forelse($latestUpdates as $item)
                 <article class="bg-white border border-[#0F4C6C]/10 rounded-2xl p-5 hover:border-[#3FA7D6]/60 hover:shadow-sm transition-all">
+                    @if($item->featuredImage)
+                        <a href="{{ route('articles.show', $item->slug) }}" class="block mb-4 overflow-hidden rounded-xl border border-[#0F4C6C]/10">
+                            <img
+                                class="w-full h-40 object-cover"
+                                src="{{ asset('storage/' . $item->featuredImage->path) }}"
+                                alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                            >
+                        </a>
+                    @endif
+
                     <p class="text-[11px] uppercase tracking-[0.14em] text-[#0F4C6C]/65">{{ $item->content_type }}</p>
                     <a href="{{ route('articles.show', $item->slug) }}" class="block mt-2 text-lg font-semibold leading-snug text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
                         {{ $item->title }}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Auth\AdminSessionController;
 use App\Http\Controllers\Admin\ArticleWorkflowController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -22,6 +23,14 @@ Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('article
 Route::get('/kategori/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/pencarian', [SearchController::class, 'index'])->name('search.index');
 Route::get('/halaman/{slug}', [PageController::class, 'show'])->name('pages.show');
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/admin/login', [AdminSessionController::class, 'create'])->name('login');
+    Route::post('/admin/login', [AdminSessionController::class, 'store'])->name('login.store');
+});
+
+Route::post('/admin/logout', [AdminSessionController::class, 'destroy'])->middleware('auth')->name('logout');
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

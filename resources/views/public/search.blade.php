@@ -24,7 +24,6 @@
     <div class="mt-8 space-y-4">
         @forelse($articles as $article)
             <article class="bg-[#F8FAFC] border border-[#0F4C6C]/10 rounded-xl p-5 hover:border-[#3FA7D6]/60 transition-colors">
-<<<<<<< HEAD
                 <div class="flex flex-col sm:flex-row gap-4">
                     @if($article->featuredImage)
                         <a href="{{ route('articles.show', $article->slug) }}" class="sm:w-40 shrink-0 overflow-hidden rounded-lg border border-[#0F4C6C]/10">
@@ -53,34 +52,14 @@
                         </p>
                     </div>
                 </div>
-=======
-                <a
-                    href="{{ route('articles.show', $article->slug) }}"
-                    class="text-xl font-semibold text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors"
-                >
-                    {{ $article->title }}
-                </a>
-
-                <p class="text-sm text-[#0F4C6C]/65 mt-1">
-                    {{ $article->category?->name }} · {{ optional($article->published_at)->format('d M Y') }}
-                </p>
-
-                <p class="mt-2 text-[#0F4C6C]/80 leading-relaxed">
-                    {{ $article->excerpt }}
-                </p>
->>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)
             </article>
         @empty
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-[#F8FAFC] p-8 text-center">
                 <p class="font-semibold text-[#0F4C6C]">Tidak ada hasil untuk "{{ $q }}".</p>
                 <p class="mt-2 text-sm text-[#0F4C6C]/70">Gunakan kata kunci yang lebih umum atau jelajahi semua artikel terbaru.</p>
-<<<<<<< HEAD
                 <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">
                     Jelajahi Artikel
                 </a>
-=======
-                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">Jelajahi Artikel</a>
->>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)
             </div>
         @endforelse
     </div>
@@ -89,8 +68,4 @@
         {{ $articles->links() }}
     </div>
 </section>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)

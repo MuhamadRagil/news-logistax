@@ -11,14 +11,17 @@ class HomeController extends Controller
 {
     public function __invoke(): View
     {
-        $featured = Article::query()->where('status', Article::STATUS_PUBLISHED)
+        $featured = Article::query()
+            ->where('status', Article::STATUS_PUBLISHED)
             ->where('is_featured', true)
             ->latest('published_at')
             ->first();
 
-        $latest = Article::query()->where('status', Article::STATUS_PUBLISHED)
+        $latest = Article::query()
+            ->where('status', Article::STATUS_PUBLISHED)
+            ->when($featured, fn ($query) => $query->where('id', '!=', $featured->id))
             ->latest('published_at')
-            ->limit(8)
+            ->limit(24)
             ->get();
 
         $categories = Category::query()->where('is_active', true)->orderBy('sort_order')->get();

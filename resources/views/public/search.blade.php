@@ -57,7 +57,9 @@
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-[#F8FAFC] p-8 text-center">
                 <p class="font-semibold text-[#0F4C6C]">Tidak ada hasil untuk "{{ $q }}".</p>
                 <p class="mt-2 text-sm text-[#0F4C6C]/70">Gunakan kata kunci yang lebih umum atau jelajahi semua artikel terbaru.</p>
-                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">Jelajahi Artikel</a>
+                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">
+                    Jelajahi Artikel
+                </a>
             </div>
         @endforelse
     </div>

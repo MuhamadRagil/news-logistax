@@ -4,7 +4,7 @@
 @section('page_title', 'Users & Roles')
 
 @section('content')
-<div class="bg-white border border-slate-200 overflow-hidden">
+<div class="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm">
     <table class="w-full text-sm">
         <thead class="bg-slate-50 text-slate-600">
             <tr>
@@ -16,7 +16,7 @@
         </thead>
         <tbody>
             @forelse($users as $user)
-                <tr class="border-t border-slate-200">
+                <tr class="border-t border-slate-200 hover:bg-slate-50/70">
                     <td class="px-5 py-3 font-medium">{{ $user->name }}</td>
                     <td class="px-5 py-3 text-slate-600">{{ $user->email }}</td>
                     <td class="px-5 py-3">{{ $user->getRoleNames()->join(', ') }}</td>

@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Logistax News')</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#F8FAFC] text-[#123247] antialiased">
+
 <header class="sticky top-0 z-30 border-b border-[#0F4C6C]/15 bg-white/95 backdrop-blur-sm">
     <div class="h-1 w-full bg-gradient-to-r from-[#0F4C6C] via-[#3FA7D6] to-[#0F4C6C]"></div>
 
@@ -18,26 +21,45 @@
         </div>
 
         <div class="py-4 flex items-center justify-between gap-4 border-t border-[#0F4C6C]/10">
-            <a href="{{ route('home') }}" class="leading-tight group">
-                <span class="block text-xl md:text-2xl tracking-tight font-semibold text-[#0F4C6C] group-hover:text-[#3FA7D6] transition-colors">
-                    Logistax Newsroom
-                </span>
-                <span class="block text-[11px] uppercase tracking-[0.24em] text-[#0F4C6C]/70 mt-1">
-                    Tax · Accounting · Law
-                </span>
+            <a href="{{ route('home') }}" class="group flex items-center gap-3 min-w-0">
+                <img
+                    src="{{ asset('images/logo.png') }}"
+                    alt="Logistax"
+                    class="h-10 w-auto md:h-11 object-contain"
+                >
+                <div class="min-w-0">
+                    <span class="block text-xl md:text-2xl tracking-tight font-semibold text-[#0F4C6C] group-hover:text-[#3FA7D6] transition-colors truncate">
+                        Logistax Newsroom
+                    </span>
+                    <span class="block text-[11px] uppercase tracking-[0.24em] text-[#0F4C6C]/70 mt-1 truncate">
+                        Tax · Accounting · Law
+                    </span>
+                </div>
             </a>
 
             <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-[#0F4C6C]">
-                <a class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-colors" href="{{ route('articles.index') }}">
+                <a
+                    class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                    href="{{ route('articles.index') }}"
+                >
                     Semua Artikel
                 </a>
-                <a class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-colors" href="{{ route('search.index') }}">
+                <a
+                    class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                    href="{{ route('search.index') }}"
+                >
                     Pencarian
                 </a>
-                <a class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-colors" href="{{ route('pages.show', 'about') }}">
+                <a
+                    class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                    href="{{ route('pages.show', 'about') }}"
+                >
                     Tentang
                 </a>
-                <a class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-colors" href="{{ route('pages.show', 'contact') }}">
+                <a
+                    class="px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                    href="{{ route('pages.show', 'contact') }}"
+                >
                     Kontak
                 </a>
             </nav>
@@ -101,5 +123,6 @@
         © {{ date('Y') }} Logistax. All rights reserved.
     </div>
 </footer>
+
 </body>
 </html>

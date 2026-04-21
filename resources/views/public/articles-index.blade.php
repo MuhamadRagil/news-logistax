@@ -72,7 +72,10 @@
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-[#F8FAFC] p-10 text-center">
                 <p class="text-base font-semibold text-[#0F4C6C]">Belum ada artikel yang sesuai.</p>
                 <p class="mt-2 text-sm text-[#0F4C6C]/70">Coba ubah kata kunci atau pilih kategori lain untuk menemukan konten.</p>
-                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">
+                <a
+                    href="{{ route('articles.index') }}"
+                    class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors"
+                >
                     Reset Filter
                 </a>
             </div>

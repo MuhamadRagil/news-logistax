@@ -4,7 +4,7 @@
 @section('page_title', 'Media Library')
 
 @section('content')
-<div class="bg-white border border-slate-200 p-5 sm:p-6 mb-6">
+<div class="rounded-xl bg-white border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
     <h3 class="text-sm uppercase tracking-[0.16em] text-slate-500 mb-4">Upload Image</h3>
 
     <form method="POST" action="{{ route('admin.media.store') }}" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-4">
@@ -13,31 +13,31 @@
         <input
             type="file"
             name="image"
-            class="border border-slate-300 px-3 py-2"
+            class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             required
         >
 
         <input
             type="text"
             name="alt_text"
-            class="border border-slate-300 px-3 py-2"
+            class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             placeholder="Alt text"
         >
 
         <input
             type="text"
             name="credit"
-            class="border border-slate-300 px-3 py-2"
+            class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             placeholder="Credit"
         >
 
         <textarea
             name="caption"
-            class="border border-slate-300 px-3 py-2"
+            class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             placeholder="Caption"
         ></textarea>
 
-        <button class="px-4 py-2 bg-blue-700 text-white w-fit">
+        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white w-fit hover:bg-[#0d425d] transition-colors">
             Upload
         </button>
     </form>
@@ -45,11 +45,11 @@
 
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
     @foreach($media as $item)
-        <div class="bg-white border border-slate-200 p-3">
+        <div class="rounded-xl bg-white border border-slate-200 p-3 shadow-sm">
             <img
                 src="{{ asset('storage/' . $item->path) }}"
                 alt="{{ $item->alt_text }}"
-                class="w-full h-36 object-cover bg-slate-100"
+                class="w-full h-36 object-cover bg-slate-100 rounded-lg"
             >
 
             <p class="text-xs mt-3 truncate text-slate-700">

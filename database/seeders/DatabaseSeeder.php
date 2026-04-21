@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
             PagesSeeder::class,
         ]);
 
+        if (app()->environment(['local', 'development', 'testing'])) {
+            $this->call([
+                DemoNewsroomSeeder::class,
+            ]);
+        }
+
         $admin = User::firstOrCreate(
             ['email' => 'admin@logistax.id'],
             ['name' => 'Super Admin', 'password' => Hash::make('password')]

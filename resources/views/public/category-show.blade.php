@@ -46,7 +46,12 @@
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-[#F8FAFC] p-9 text-center">
                 <p class="font-semibold text-[#0F4C6C]">Belum ada artikel pada kategori ini.</p>
                 <p class="mt-2 text-sm text-[#0F4C6C]/70">Konten untuk kategori ini akan tampil setelah artikel dipublikasikan.</p>
-                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full border border-[#0F4C6C]/20 bg-white px-4 py-2 text-sm font-medium text-[#0F4C6C] hover:border-[#3FA7D6]/70 hover:text-[#3FA7D6] transition-colors">Lihat Semua Artikel</a>
+                <a
+                    href="{{ route('articles.index') }}"
+                    class="inline-flex mt-4 rounded-full border border-[#0F4C6C]/20 bg-white px-4 py-2 text-sm font-medium text-[#0F4C6C] hover:border-[#3FA7D6]/70 hover:text-[#3FA7D6] transition-colors"
+                >
+                    Lihat Semua Artikel
+                </a>
             </div>
         @endforelse
     </div>

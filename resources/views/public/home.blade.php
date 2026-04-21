@@ -17,7 +17,9 @@
 <section class="grid lg:grid-cols-12 gap-8 border-b border-[#0F4C6C]/15 pb-10">
     <div class="lg:col-span-7">
         @if($featured)
-            <p class="inline-flex items-center gap-2 rounded-full border border-[#3FA7D6]/40 bg-[#3FA7D6]/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[#0F4C6C]">Lead Story</p>
+            <p class="inline-flex items-center gap-2 rounded-full border border-[#3FA7D6]/40 bg-[#3FA7D6]/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[#0F4C6C]">
+                Lead Story
+            </p>
 
             @if($featured->featuredImage)
                 <a href="{{ route('articles.show', $featured->slug) }}" class="block mt-4 overflow-hidden rounded-2xl border border-[#0F4C6C]/10 bg-[#F8FAFC]">
@@ -34,9 +36,11 @@
                     {{ $featured->title }}
                 </h1>
             </a>
+
             <p class="mt-4 text-[#0F4C6C]/80 leading-relaxed text-base md:text-lg max-w-2xl">
                 {{ $featured->excerpt }}
             </p>
+
             <div class="mt-5 text-sm text-[#0F4C6C]/70 flex gap-4">
                 <span>{{ $featured->category?->name }}</span>
                 <span>•</span>
@@ -52,7 +56,8 @@
 
     <div class="lg:col-span-5 space-y-4">
         <h2 class="text-sm uppercase tracking-[0.18em] text-[#0F4C6C]/70">Top Stories</h2>
-        <div class="space-y-4 rounded-2xl bg-[#F8FAFC] border border-[#0F4C6C]/10 p-5">
+
+        <div class="space-y-4 rounded-2xl bg-white border border-[#0F4C6C]/10 p-5">
             @forelse($secondary as $item)
                 <article class="border-b border-[#0F4C6C]/10 pb-4 last:border-0 last:pb-0">
                     <p class="text-xs text-[#0F4C6C]/65">{{ $item->category?->name }}</p>
@@ -73,6 +78,7 @@
             <h2 class="text-xl font-semibold text-[#0F4C6C]">Latest Updates</h2>
             <span class="h-px w-20 bg-[#3FA7D6]/60"></span>
         </div>
+
         <div class="grid md:grid-cols-2 gap-5">
             @forelse($latestUpdates as $item)
                 <article class="bg-white border border-[#0F4C6C]/10 rounded-2xl p-5 hover:border-[#3FA7D6]/60 hover:shadow-sm transition-all">
@@ -85,10 +91,13 @@
                             >
                         </a>
                     @endif
+
                     <p class="text-[11px] uppercase tracking-[0.14em] text-[#0F4C6C]/65">{{ $item->content_type }}</p>
+
                     <a href="{{ route('articles.show', $item->slug) }}" class="block mt-2 text-lg font-semibold leading-snug text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
                         {{ $item->title }}
                     </a>
+
                     <p class="mt-2 text-sm text-[#0F4C6C]/75 line-clamp-3">
                         {{ $item->excerpt }}
                     </p>
@@ -102,13 +111,14 @@
         </div>
     </div>
 
-    <aside class="lg:col-span-4 bg-[#F8FAFC] border border-[#0F4C6C]/10 rounded-2xl p-6">
+    <aside class="lg:col-span-4 bg-white border border-[#0F4C6C]/10 rounded-2xl p-6">
         <h3 class="text-sm uppercase tracking-[0.18em] text-[#0F4C6C]/70">Category Focus</h3>
+
         <div class="mt-4 space-y-6 text-sm">
             <div>
                 <p class="font-semibold text-[#0F4C6C]">Pajak</p>
                 @forelse($tax as $item)
-                    <a class="block mt-2 text-[#0F4C6C]/85 hover:text-[#3FA7D6] transition-colors" href="{{ route('articles.show', $item->slug) }}">
+                    <a class="block mt-2 text-[#0F4C6C]/85 hover:text-[#3FA7D6]" href="{{ route('articles.show', $item->slug) }}">
                         {{ $item->title }}
                     </a>
                 @empty
@@ -119,7 +129,7 @@
             <div>
                 <p class="font-semibold text-[#0F4C6C]">Akuntansi</p>
                 @forelse($accounting as $item)
-                    <a class="block mt-2 text-[#0F4C6C]/85 hover:text-[#3FA7D6] transition-colors" href="{{ route('articles.show', $item->slug) }}">
+                    <a class="block mt-2 text-[#0F4C6C]/85 hover:text-[#3FA7D6]" href="{{ route('articles.show', $item->slug) }}">
                         {{ $item->title }}
                     </a>
                 @empty
@@ -130,7 +140,7 @@
             <div>
                 <p class="font-semibold text-[#0F4C6C]">Hukum</p>
                 @forelse($law as $item)
-                    <a class="block mt-2 text-[#0F4C6C]/85 hover:text-[#3FA7D6] transition-colors" href="{{ route('articles.show', $item->slug) }}">
+                    <a class="block mt-2 text-[#0F4C6C]/85 hover:text-[#3FA7D6]" href="{{ route('articles.show', $item->slug) }}">
                         {{ $item->title }}
                     </a>
                 @empty
@@ -146,7 +156,7 @@
         <h3 class="text-sm uppercase tracking-[0.15em] text-[#0F4C6C]/70">Pengumuman</h3>
         <div class="mt-3 space-y-3">
             @forelse($announcements as $item)
-                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
+                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-[#0F4C6C] hover:text-[#3FA7D6]">
                     {{ $item->title }}
                 </a>
             @empty
@@ -159,7 +169,7 @@
         <h3 class="text-sm uppercase tracking-[0.15em] text-[#0F4C6C]/70">Opini</h3>
         <div class="mt-3 space-y-3">
             @forelse($opinions as $item)
-                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
+                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-[#0F4C6C] hover:text-[#3FA7D6]">
                     {{ $item->title }}
                 </a>
             @empty
@@ -172,7 +182,7 @@
         <h3 class="text-sm uppercase tracking-[0.15em] text-[#0F4C6C]/70">Press Release</h3>
         <div class="mt-3 space-y-3">
             @forelse($pressReleases as $item)
-                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
+                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-[#0F4C6C] hover:text-[#3FA7D6]">
                     {{ $item->title }}
                 </a>
             @empty

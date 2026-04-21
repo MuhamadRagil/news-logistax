@@ -26,7 +26,10 @@ class HomeController extends Controller
             ->limit(24)
             ->get();
 
-        $categories = Category::query()->where('is_active', true)->orderBy('sort_order')->get();
+        $categories = Category::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
 
         return view('public.home', compact('featured', 'latest', 'categories'));
     }

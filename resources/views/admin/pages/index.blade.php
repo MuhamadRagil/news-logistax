@@ -4,7 +4,7 @@
 @section('page_title', 'Static Pages')
 
 @section('content')
-<div class="bg-white border border-slate-200 overflow-hidden">
+<div class="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm">
     <table class="w-full text-sm">
         <thead class="bg-slate-50 text-slate-600">
             <tr>
@@ -16,11 +16,11 @@
         </thead>
         <tbody>
             @forelse($pages as $page)
-                <tr class="border-t border-slate-200">
+                <tr class="border-t border-slate-200 hover:bg-slate-50/70">
                     <td class="px-5 py-3 font-medium">{{ $page->title }}</td>
                     <td class="px-5 py-3 text-slate-600">{{ $page->slug }}</td>
                     <td class="px-5 py-3">
-                        <span class="px-2.5 py-1 text-xs border border-slate-300 bg-slate-50">
+                        <span class="px-2.5 py-1 text-xs rounded-full border border-[#0F4C6C]/20 bg-[#F1F7FB] text-[#0F4C6C]">
                             {{ $page->status }}
                         </span>
                     </td>

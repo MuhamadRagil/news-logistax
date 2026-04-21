@@ -5,12 +5,12 @@
 
 @section('content')
 <div class="mb-4 flex justify-end">
-    <a href="{{ route('admin.tags.create') }}" class="px-4 py-2 bg-blue-700 text-white text-sm">
+    <a href="{{ route('admin.tags.create') }}" class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm hover:bg-[#0d425d] transition-colors">
         New Tag
     </a>
 </div>
 
-<div class="bg-white border border-slate-200 overflow-hidden">
+<div class="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm">
     <table class="w-full text-sm">
         <thead class="bg-slate-50 text-slate-600">
             <tr>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             @forelse($tags as $tag)
-                <tr class="border-t border-slate-200">
+                <tr class="border-t border-slate-200 hover:bg-slate-50/70">
                     <td class="px-5 py-3 font-medium">{{ $tag->name }}</td>
                     <td class="px-5 py-3 text-slate-600">{{ $tag->slug }}</td>
                     <td class="px-5 py-3">

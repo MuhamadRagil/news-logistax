@@ -4,7 +4,7 @@
 @section('page_title', $category->exists ? 'Edit Category' : 'Create Category')
 
 @section('content')
-<form method="POST" action="{{ $category->exists ? route('admin.categories.update', $category) : route('admin.categories.store') }}" class="max-w-2xl bg-white border border-slate-200 p-6 space-y-4">
+<form method="POST" action="{{ $category->exists ? route('admin.categories.update', $category) : route('admin.categories.store') }}" class="max-w-2xl rounded-xl bg-white border border-slate-200 p-6 space-y-4 shadow-sm">
     @csrf
     @if($category->exists)
         @method('PUT')
@@ -15,7 +15,7 @@
         <input
             name="name"
             value="{{ old('name', $category->name) }}"
-            class="w-full border border-slate-300 px-3 py-2"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             required
         >
     </div>
@@ -25,7 +25,7 @@
         <input
             name="slug"
             value="{{ old('slug', $category->slug) }}"
-            class="w-full border border-slate-300 px-3 py-2"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             required
         >
     </div>
@@ -35,7 +35,7 @@
         <textarea
             name="description"
             rows="4"
-            class="w-full border border-slate-300 px-3 py-2"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
         >{{ old('description', $category->description) }}</textarea>
     </div>
 
@@ -49,14 +49,14 @@
             type="number"
             name="sort_order"
             value="{{ old('sort_order', $category->sort_order ?? 0) }}"
-            class="border border-slate-300 px-3 py-2"
+            class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
             placeholder="Sort order"
         >
     </div>
 
     <div class="flex gap-3 pt-2">
-        <button class="px-4 py-2 bg-blue-700 text-white">Save</button>
-        <a href="{{ route('admin.categories.index') }}" class="px-4 py-2 border border-slate-300 bg-white">Back</a>
+        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white hover:bg-[#0d425d] transition-colors">Save</button>
+        <a href="{{ route('admin.categories.index') }}" class="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 transition-colors">Back</a>
     </div>
 </form>
 @endsection

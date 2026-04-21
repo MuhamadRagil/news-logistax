@@ -12,7 +12,7 @@ class ArticleController extends Controller
 {
     public function index(Request $request): View
     {
-        $query = Article::query()->where('status', Article::STATUS_PUBLISHED)->with(['category', 'author']);
+        $query = Article::query()->where('status', Article::STATUS_PUBLISHED)->with(['category', 'author', 'featuredImage']);
 
         if ($request->filled('category')) {
             $query->whereHas('category', fn ($q) => $q->where('slug', $request->string('category')));
@@ -40,7 +40,7 @@ class ArticleController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $related = Article::query()->where('status', Article::STATUS_PUBLISHED)
+        $related = Article::query()->with(['category', 'featuredImage'])->where('status', Article::STATUS_PUBLISHED)
             ->where('category_id', $article->category_id)
             ->where('id', '!=', $article->id)
             ->latest('published_at')

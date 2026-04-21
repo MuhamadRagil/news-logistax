@@ -13,7 +13,7 @@ class CategoryController extends Controller
     {
         $category = Category::query()->where('slug', $slug)->where('is_active', true)->firstOrFail();
 
-        $articles = Article::query()->where('status', Article::STATUS_PUBLISHED)
+        $articles = Article::query()->with(['category', 'featuredImage'])->where('status', Article::STATUS_PUBLISHED)
             ->where('category_id', $category->id)
             ->latest('published_at')
             ->paginate(12);

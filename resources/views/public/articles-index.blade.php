@@ -18,10 +18,14 @@
                 placeholder="Cari kata kunci..."
             >
 
+<<<<<<< HEAD
             <select
                 name="category"
                 class="border border-[#0F4C6C]/25 rounded-lg bg-white px-3 py-2 text-[#0F4C6C] focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/50"
             >
+=======
+            <select name="category" class="border border-[#0F4C6C]/25 rounded-lg bg-white px-3 py-2 text-[#0F4C6C] focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/50">
+>>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)
                 <option value="">Semua kategori</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->slug }}" @selected(request('category') === $category->slug)>
@@ -39,6 +43,7 @@
     <div class="mt-8 space-y-4">
         @forelse($articles as $article)
             <article class="bg-[#F8FAFC] border border-[#0F4C6C]/10 rounded-xl p-6 hover:border-[#3FA7D6]/60 transition-colors">
+<<<<<<< HEAD
                 <div class="flex flex-col md:flex-row gap-5">
                     @if($article->featuredImage)
                         <a href="{{ route('articles.show', $article->slug) }}" class="md:w-52 shrink-0 overflow-hidden rounded-lg border border-[#0F4C6C]/10">
@@ -67,14 +72,34 @@
                         </p>
                     </div>
                 </div>
+=======
+                <p class="text-xs uppercase tracking-wide text-[#0F4C6C]/65">
+                    {{ $article->category?->name }} · {{ optional($article->published_at)->format('d M Y') }}
+                </p>
+
+                <a
+                    href="{{ route('articles.show', $article->slug) }}"
+                    class="block mt-2 text-2xl font-semibold leading-tight text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors"
+                >
+                    {{ $article->title }}
+                </a>
+
+                <p class="mt-3 text-[#0F4C6C]/80 leading-relaxed">
+                    {{ $article->excerpt }}
+                </p>
+>>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)
             </article>
         @empty
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-[#F8FAFC] p-10 text-center">
                 <p class="text-base font-semibold text-[#0F4C6C]">Belum ada artikel yang sesuai.</p>
                 <p class="mt-2 text-sm text-[#0F4C6C]/70">Coba ubah kata kunci atau pilih kategori lain untuk menemukan konten.</p>
+<<<<<<< HEAD
                 <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">
                     Reset Filter
                 </a>
+=======
+                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">Reset Filter</a>
+>>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)
             </div>
         @endforelse
     </div>
@@ -83,4 +108,8 @@
         {{ $articles->links() }}
     </div>
 </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> d8070ff (Add local demo newsroom seeder and tighten home feed logic)

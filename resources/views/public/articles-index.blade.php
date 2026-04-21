@@ -18,7 +18,10 @@
                 placeholder="Cari kata kunci..."
             >
 
-            <select name="category" class="border border-[#0F4C6C]/25 rounded-lg bg-white px-3 py-2 text-[#0F4C6C] focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/50">
+            <select
+                name="category"
+                class="border border-[#0F4C6C]/25 rounded-lg bg-white px-3 py-2 text-[#0F4C6C] focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/50"
+            >
                 <option value="">Semua kategori</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->slug }}" @selected(request('category') === $category->slug)>
@@ -69,7 +72,9 @@
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-[#F8FAFC] p-10 text-center">
                 <p class="text-base font-semibold text-[#0F4C6C]">Belum ada artikel yang sesuai.</p>
                 <p class="mt-2 text-sm text-[#0F4C6C]/70">Coba ubah kata kunci atau pilih kategori lain untuk menemukan konten.</p>
-                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">Reset Filter</a>
+                <a href="{{ route('articles.index') }}" class="inline-flex mt-4 rounded-full bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0c415d] transition-colors">
+                    Reset Filter
+                </a>
             </div>
         @endforelse
     </div>

@@ -1,4 +1,5 @@
 @extends('layouts.public')
+
 @section('title', $page->meta_title ?? $page->title)
 
 @section('content')

@@ -1,10 +1,13 @@
 @extends('layouts.admin')
+
 @section('title', 'Edit User Role')
 @section('page_title', 'Edit User Role')
 
 @section('content')
 <form method="POST" action="{{ route('admin.users.update', $user) }}" class="max-w-xl bg-white border border-slate-200 p-6 space-y-4">
-    @csrf @method('PUT')
+    @csrf
+    @method('PUT')
+
     <div>
         <p class="text-xs uppercase tracking-[0.16em] text-slate-500">User</p>
         <p class="mt-1 font-semibold text-slate-900">{{ $user->name }}</p>

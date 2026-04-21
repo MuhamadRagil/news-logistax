@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('title', 'Users')
 @section('page_title', 'Users & Roles')
 
@@ -14,16 +15,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($users as $user)
+            @forelse($users as $user)
                 <tr class="border-t border-slate-200">
                     <td class="px-5 py-3 font-medium">{{ $user->name }}</td>
                     <td class="px-5 py-3 text-slate-600">{{ $user->email }}</td>
                     <td class="px-5 py-3">{{ $user->getRoleNames()->join(', ') }}</td>
-                    <td class="px-5 py-3"><a class="text-blue-700" href="{{ route('admin.users.edit', $user) }}">Edit Role</a></td>
+                    <td class="px-5 py-3">
+                        <a class="text-blue-700 hover:text-blue-900" href="{{ route('admin.users.edit', $user) }}">
+                            Edit Role
+                        </a>
+                    </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="px-5 py-6 text-center text-slate-500">
+                        No users found.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
-<div class="mt-6">{{ $users->links() }}</div>
+
+<div class="mt-6">
+    {{ $users->links() }}
+</div>
 @endsection

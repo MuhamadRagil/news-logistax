@@ -29,8 +29,10 @@
             @endphp
 
             @foreach($navItems as $item)
-                <a href="{{ route($item['route']) }}"
-                   class="block px-3 py-2.5 {{ request()->routeIs(str_replace('.index', '.*', $item['route'])) || request()->routeIs($item['route']) ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                <a
+                    href="{{ route($item['route']) }}"
+                    class="block px-3 py-2.5 {{ request()->routeIs(str_replace('.index', '.*', $item['route'])) || request()->routeIs($item['route']) ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}"
+                >
                     {{ $item['label'] }}
                 </a>
             @endforeach
@@ -49,14 +51,19 @@
                 <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Admin Panel</p>
                 <h2 class="text-xl sm:text-2xl font-semibold mt-1">@yield('page_title')</h2>
             </div>
+
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="text-sm px-3 py-2 border border-slate-300 bg-white hover:bg-slate-50">Logout</button>
+                <button type="submit" class="text-sm px-3 py-2 border border-slate-300 bg-white hover:bg-slate-50">
+                    Logout
+                </button>
             </form>
         </header>
 
         @if(session('success'))
-            <div class="mb-6 border border-emerald-300 bg-emerald-50 text-emerald-700 px-4 py-3 text-sm">{{ session('success') }}</div>
+            <div class="mb-6 border border-emerald-300 bg-emerald-50 text-emerald-700 px-4 py-3 text-sm">
+                {{ session('success') }}
+            </div>
         @endif
 
         @if($errors->any())

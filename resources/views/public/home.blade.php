@@ -1,4 +1,5 @@
 @extends('layouts.public')
+
 @section('title', 'Logistax Newsroom')
 
 @section('content')
@@ -18,9 +19,13 @@
         @if($featured)
             <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Lead Story</p>
             <a href="{{ route('articles.show', $featured->slug) }}" class="block mt-3">
-                <h1 class="text-3xl md:text-5xl leading-tight font-semibold text-slate-900">{{ $featured->title }}</h1>
+                <h1 class="text-3xl md:text-5xl leading-tight font-semibold text-slate-900">
+                    {{ $featured->title }}
+                </h1>
             </a>
-            <p class="mt-4 text-slate-600 leading-relaxed text-base md:text-lg max-w-2xl">{{ $featured->excerpt }}</p>
+            <p class="mt-4 text-slate-600 leading-relaxed text-base md:text-lg max-w-2xl">
+                {{ $featured->excerpt }}
+            </p>
             <div class="mt-5 text-sm text-slate-500 flex gap-4">
                 <span>{{ $featured->category?->name }}</span>
                 <span>•</span>
@@ -35,7 +40,9 @@
             @foreach($secondary as $item)
                 <article class="border-b border-stone-200 pb-4">
                     <p class="text-xs text-slate-500">{{ $item->category?->name }}</p>
-                    <a href="{{ route('articles.show', $item->slug) }}" class="block mt-1 font-semibold text-slate-900 hover:text-slate-700">{{ $item->title }}</a>
+                    <a href="{{ route('articles.show', $item->slug) }}" class="block mt-1 font-semibold text-slate-900 hover:text-slate-700">
+                        {{ $item->title }}
+                    </a>
                 </article>
             @endforeach
         </div>
@@ -49,31 +56,44 @@
             @foreach($latestUpdates as $item)
                 <article class="bg-white border border-stone-200 p-5">
                     <p class="text-xs uppercase tracking-wide text-slate-500">{{ $item->content_type }}</p>
-                    <a href="{{ route('articles.show', $item->slug) }}" class="block mt-2 text-lg font-semibold leading-snug text-slate-900">{{ $item->title }}</a>
-                    <p class="mt-2 text-sm text-slate-600 line-clamp-3">{{ $item->excerpt }}</p>
+                    <a href="{{ route('articles.show', $item->slug) }}" class="block mt-2 text-lg font-semibold leading-snug text-slate-900">
+                        {{ $item->title }}
+                    </a>
+                    <p class="mt-2 text-sm text-slate-600 line-clamp-3">
+                        {{ $item->excerpt }}
+                    </p>
                 </article>
             @endforeach
         </div>
     </div>
+
     <aside class="lg:col-span-4 bg-white border border-stone-200 p-6">
         <h3 class="text-sm uppercase tracking-[0.18em] text-slate-500">Category Focus</h3>
         <div class="mt-4 space-y-6 text-sm">
             <div>
                 <p class="font-semibold text-slate-900">Pajak</p>
                 @foreach($tax as $item)
-                    <a class="block mt-2 text-slate-700 hover:text-slate-900" href="{{ route('articles.show', $item->slug) }}">{{ $item->title }}</a>
+                    <a class="block mt-2 text-slate-700 hover:text-slate-900" href="{{ route('articles.show', $item->slug) }}">
+                        {{ $item->title }}
+                    </a>
                 @endforeach
             </div>
+
             <div>
                 <p class="font-semibold text-slate-900">Akuntansi</p>
                 @foreach($accounting as $item)
-                    <a class="block mt-2 text-slate-700 hover:text-slate-900" href="{{ route('articles.show', $item->slug) }}">{{ $item->title }}</a>
+                    <a class="block mt-2 text-slate-700 hover:text-slate-900" href="{{ route('articles.show', $item->slug) }}">
+                        {{ $item->title }}
+                    </a>
                 @endforeach
             </div>
+
             <div>
                 <p class="font-semibold text-slate-900">Hukum</p>
                 @foreach($law as $item)
-                    <a class="block mt-2 text-slate-700 hover:text-slate-900" href="{{ route('articles.show', $item->slug) }}">{{ $item->title }}</a>
+                    <a class="block mt-2 text-slate-700 hover:text-slate-900" href="{{ route('articles.show', $item->slug) }}">
+                        {{ $item->title }}
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -85,27 +105,35 @@
         <h3 class="text-sm uppercase tracking-[0.15em] text-slate-500">Pengumuman</h3>
         <div class="mt-3 space-y-3">
             @forelse($announcements as $item)
-                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-slate-800 hover:text-slate-900">{{ $item->title }}</a>
+                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-slate-800 hover:text-slate-900">
+                    {{ $item->title }}
+                </a>
             @empty
                 <p class="text-sm text-slate-500">Belum ada pengumuman terbaru.</p>
             @endforelse
         </div>
     </div>
+
     <div class="bg-white border border-stone-200 p-5">
         <h3 class="text-sm uppercase tracking-[0.15em] text-slate-500">Opini</h3>
         <div class="mt-3 space-y-3">
             @forelse($opinions as $item)
-                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-slate-800 hover:text-slate-900">{{ $item->title }}</a>
+                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-slate-800 hover:text-slate-900">
+                    {{ $item->title }}
+                </a>
             @empty
                 <p class="text-sm text-slate-500">Belum ada artikel opini terbaru.</p>
             @endforelse
         </div>
     </div>
+
     <div class="bg-white border border-stone-200 p-5">
         <h3 class="text-sm uppercase tracking-[0.15em] text-slate-500">Press Release</h3>
         <div class="mt-3 space-y-3">
             @forelse($pressReleases as $item)
-                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-slate-800 hover:text-slate-900">{{ $item->title }}</a>
+                <a href="{{ route('articles.show', $item->slug) }}" class="block text-sm font-medium text-slate-800 hover:text-slate-900">
+                    {{ $item->title }}
+                </a>
             @empty
                 <p class="text-sm text-slate-500">Belum ada press release terbaru.</p>
             @endforelse

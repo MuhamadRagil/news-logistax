@@ -13,10 +13,15 @@
             <span>{{ now()->format('l, d F Y') }}</span>
             <span>Official Publication Portal</span>
         </div>
+
         <div class="py-4 flex items-center justify-between gap-4">
             <a href="{{ route('home') }}" class="leading-tight">
-                <span class="block text-xl md:text-2xl tracking-tight font-semibold text-slate-900">Logistax Newsroom</span>
-                <span class="block text-xs uppercase tracking-[0.24em] text-slate-500 mt-1">Tax · Accounting · Law</span>
+                <span class="block text-xl md:text-2xl tracking-tight font-semibold text-slate-900">
+                    Logistax Newsroom
+                </span>
+                <span class="block text-xs uppercase tracking-[0.24em] text-slate-500 mt-1">
+                    Tax · Accounting · Law
+                </span>
             </a>
 
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
@@ -42,6 +47,7 @@
                 pengumuman institusional, opini, dan press release.
             </p>
         </div>
+
         <div>
             <h4 class="font-semibold text-slate-900">Navigasi</h4>
             <ul class="mt-3 space-y-2 text-slate-600">
@@ -51,6 +57,7 @@
                 <li><a class="hover:text-slate-900" href="{{ route('pages.show', 'contact') }}">Kontak</a></li>
             </ul>
         </div>
+
         <div>
             <h4 class="font-semibold text-slate-900">Kredibilitas Editorial</h4>
             <p class="mt-3 text-slate-600 leading-relaxed">
@@ -59,6 +66,7 @@
             </p>
         </div>
     </div>
+
     <div class="border-t border-stone-200 py-4 text-center text-xs text-slate-500">
         © {{ date('Y') }} Logistax. All rights reserved.
     </div>

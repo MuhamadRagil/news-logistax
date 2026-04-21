@@ -5,7 +5,7 @@
 @section('content')
 @php
     $secondary = $latest->take(4);
-    $latestUpdates = $latest->skip(1)->take(6);
+    $latestUpdates = $latest->skip(4)->take(6);
     $tax = $latest->filter(fn($a) => str_contains(strtolower($a->category?->name ?? ''), 'pajak'))->take(3);
     $accounting = $latest->filter(fn($a) => str_contains(strtolower($a->category?->name ?? ''), 'akuntansi'))->take(3);
     $law = $latest->filter(fn($a) => str_contains(strtolower($a->category?->name ?? ''), 'hukum'))->take(3);

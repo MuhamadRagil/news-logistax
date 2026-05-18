@@ -45,6 +45,8 @@
                 <span>{{ $featured->category?->name }}</span>
                 <span>•</span>
                 <span>{{ optional($featured->published_at)->format('d M Y') }}</span>
+                <span>•</span>
+                <span>{{ number_format((int) $featured->view_count, 0, ',', '.') }} views</span>
             </div>
         @else
             <div class="rounded-2xl border border-dashed border-[#3FA7D6]/50 bg-white p-8">
@@ -60,7 +62,7 @@
         <div class="space-y-4 rounded-2xl bg-white border border-[#0F4C6C]/10 p-5">
             @forelse($secondary as $item)
                 <article class="border-b border-[#0F4C6C]/10 pb-4 last:border-0 last:pb-0">
-                    <p class="text-xs text-[#0F4C6C]/65">{{ $item->category?->name }}</p>
+                    <p class="text-xs text-[#0F4C6C]/65">{{ $item->category?->name }} · {{ number_format((int) $item->view_count, 0, ',', '.') }} views</p>
                     <a href="{{ route('articles.show', $item->slug) }}" class="block mt-1 font-semibold text-[#0F4C6C] hover:text-[#3FA7D6] leading-snug transition-colors">
                         {{ $item->title }}
                     </a>
@@ -92,7 +94,7 @@
                         </a>
                     @endif
 
-                    <p class="text-[11px] uppercase tracking-[0.14em] text-[#0F4C6C]/65">{{ $item->content_type }}</p>
+                    <p class="text-[11px] uppercase tracking-[0.14em] text-[#0F4C6C]/65">{{ $item->content_type }} · {{ number_format((int) $item->view_count, 0, ',', '.') }} views</p>
 
                     <a href="{{ route('articles.show', $item->slug) }}" class="block mt-2 text-lg font-semibold leading-snug text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
                         {{ $item->title }}

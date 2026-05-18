@@ -39,11 +39,19 @@ class ArticleController extends Controller
             $query->where('content_type', $request->string('content_type'));
         }
 
+        if ($request->filled('q')) {
+            $term = $request->string('q');
+            $query->where(function ($subQuery) use ($term) {
+                $subQuery->where('title', 'like', "%{$term}%")
+                    ->orWhere('excerpt', 'like', "%{$term}%");
+            });
+        }
+
         if (! auth()->user()->hasAnyRole(['Super Admin', 'Editor'])) {
             $query->where('author_id', auth()->id());
         }
 
-        $articles = $query->latest()->paginate(20)->withQueryString();
+        $articles = $query->latest('updated_at')->paginate(20)->withQueryString();
         $categories = Category::orderBy('name')->get();
 
         return view('admin.articles.index', compact('articles', 'categories'));

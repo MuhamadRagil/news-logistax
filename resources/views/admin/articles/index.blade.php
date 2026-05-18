@@ -5,8 +5,15 @@
 
 @section('content')
 <div class="rounded-xl bg-white border border-slate-200 p-4 sm:p-5 mb-5 shadow-sm">
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-        <form method="GET" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2 text-sm">
+    <div class="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-4">
+        <form method="GET" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-2 text-sm flex-1">
+            <input
+                name="q"
+                value="{{ request('q') }}"
+                class="rounded-lg border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40"
+                placeholder="Search title..."
+            >
+
             <select name="status" class="rounded-lg border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40">
                 <option value="">All Status</option>
                 @foreach(['draft', 'pending_review', 'approved', 'scheduled', 'published'] as $status)
@@ -39,7 +46,7 @@
             </button>
         </form>
 
-        <a href="{{ route('admin.articles.create') }}" class="inline-flex px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm font-medium hover:bg-[#0d425d] transition-colors">
+        <a href="{{ route('admin.articles.create') }}" class="inline-flex justify-center px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm font-medium hover:bg-[#0d425d] transition-colors">
             Create Article
         </a>
     </div>
@@ -52,28 +59,46 @@
                 <tr>
                     <th class="p-4 text-left font-medium">Title</th>
                     <th class="p-4 text-left font-medium">Status</th>
-                    <th class="p-4 text-left font-medium">Type</th>
-                    <th class="p-4 text-left font-medium">Actions</th>
+                    <th class="p-4 text-left font-medium">Category</th>
+                    <th class="p-4 text-left font-medium">Author</th>
+                    <th class="p-4 text-right font-medium">Views</th>
+                    <th class="p-4 text-left font-medium">Updated At</th>
+                    <th class="p-4 text-left font-medium">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($articles as $article)
                     <tr class="border-t border-slate-200 hover:bg-slate-50/70">
-                        <td class="p-4">
+                        <td class="p-4 min-w-[260px]">
                             <p class="font-medium text-slate-900">{{ $article->title }}</p>
                             <p class="text-xs text-slate-500 mt-1">
-                                {{ $article->category?->name }} · {{ $article->author?->name }}
+                                {{ ucfirst(str_replace('_', ' ', $article->content_type)) }}
+                                @if($article->published_at)
+                                    · Published {{ $article->published_at->format('d M Y') }}
+                                @endif
                             </p>
                         </td>
 
                         <td class="p-4">
-                            <span class="px-2.5 py-1 text-xs rounded-full border border-[#0F4C6C]/20 bg-[#F1F7FB] text-[#0F4C6C]">
-                                {{ $article->status }}
+                            <span class="px-2.5 py-1 text-xs rounded-full border border-[#0F4C6C]/20 bg-[#F1F7FB] text-[#0F4C6C] whitespace-nowrap">
+                                {{ ucfirst(str_replace('_', ' ', $article->status)) }}
                             </span>
                         </td>
 
-                        <td class="p-4 text-slate-600">
-                            {{ $article->content_type }}
+                        <td class="p-4 text-slate-600 whitespace-nowrap">
+                            {{ $article->category?->name ?? '-' }}
+                        </td>
+
+                        <td class="p-4 text-slate-600 whitespace-nowrap">
+                            {{ $article->author?->name ?? '-' }}
+                        </td>
+
+                        <td class="p-4 text-right font-medium text-[#0F4C6C] whitespace-nowrap">
+                            {{ number_format((int) $article->view_count, 0, ',', '.') }}
+                        </td>
+
+                        <td class="p-4 text-slate-500 whitespace-nowrap">
+                            {{ $article->updated_at?->format('d M Y H:i') }}
                         </td>
 
                         <td class="p-4">
@@ -94,7 +119,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="p-8 text-center text-slate-500">
+                        <td colspan="7" class="p-8 text-center text-slate-500">
                             No articles found.
                         </td>
                     </tr>

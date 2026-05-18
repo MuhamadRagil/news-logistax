@@ -26,7 +26,7 @@
 
                     <div>
                         <p class="text-xs text-[#0F4C6C]/65">
-                            {{ optional($article->published_at)->format('d M Y') }}
+                            {{ optional($article->published_at)->format('d M Y') }} · {{ number_format((int) $article->view_count, 0, ',', '.') }} views
                         </p>
 
                         <a

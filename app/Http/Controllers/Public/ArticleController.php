@@ -40,6 +40,13 @@ class ArticleController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
+        Article::query()
+            ->whereKey($article->getKey())
+            ->where('status', Article::STATUS_PUBLISHED)
+            ->increment('view_count');
+
+        $article->view_count = ((int) $article->view_count) + 1;
+
         $related = Article::query()->with(['category', 'featuredImage'])->where('status', Article::STATUS_PUBLISHED)
             ->where('category_id', $article->category_id)
             ->where('id', '!=', $article->id)

@@ -38,6 +38,7 @@ class Article extends Model
         'featured_image_id',
         'publish_at',
         'published_at',
+        'view_count',
         'is_featured',
         'is_indexable',
         'meta_title',
@@ -51,6 +52,7 @@ class Article extends Model
     protected $casts = [
         'publish_at' => 'datetime',
         'published_at' => 'datetime',
+        'view_count' => 'integer',
         'is_featured' => 'boolean',
         'is_indexable' => 'boolean',
     ];
@@ -89,6 +91,14 @@ class Article extends Model
         }
 
         return $slug;
+    }
+
+
+    public function getReadTimeMinutesAttribute(): int
+    {
+        $wordCount = str_word_count(strip_tags($this->body ?? ''));
+
+        return max(1, (int) ceil($wordCount / 200));
     }
 
     public function category(): BelongsTo

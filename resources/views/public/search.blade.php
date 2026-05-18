@@ -44,7 +44,7 @@
                         </a>
 
                         <p class="text-sm text-[#0F4C6C]/65 mt-1">
-                            {{ $article->category?->name }} · {{ optional($article->published_at)->format('d M Y') }}
+                            {{ $article->category?->name }} · {{ optional($article->published_at)->format('d M Y') }} · {{ number_format((int) $article->view_count, 0, ',', '.') }} views
                         </p>
 
                         <p class="mt-2 text-[#0F4C6C]/80 leading-relaxed">

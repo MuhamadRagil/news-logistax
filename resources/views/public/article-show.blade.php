@@ -19,10 +19,15 @@
             </p>
         @endif
 
-        <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#0F4C6C]/70 border-b border-[#0F4C6C]/10 pb-6">
+        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#0F4C6C]/70 border-b border-[#0F4C6C]/10 pb-6">
             <span>
                 Penulis:
                 <strong class="text-[#0F4C6C]">{{ $article->author?->name }}</strong>
+            </span>
+
+            <span>
+                Kategori:
+                <strong class="text-[#0F4C6C]">{{ $article->category?->name }}</strong>
             </span>
 
             <span>
@@ -31,8 +36,11 @@
             </span>
 
             <span>
-                Jenis:
-                <strong class="text-[#0F4C6C]">{{ $article->content_type }}</strong>
+                {{ $article->read_time_minutes }} menit baca
+            </span>
+
+            <span class="text-[#0F4C6C]/55">
+                {{ number_format((int) $article->view_count, 0, ',', '.') }} views
             </span>
         </div>
 
@@ -99,7 +107,7 @@
                         >
                     @endif
                     <p class="text-xs text-[#0F4C6C]/65">
-                        {{ optional($item->published_at)->format('d M Y') }}
+                        {{ optional($item->published_at)->format('d M Y') }} · {{ number_format((int) $item->view_count, 0, ',', '.') }} views
                     </p>
                     <p class="mt-1 font-semibold text-[#0F4C6C]">
                         {{ $item->title }}

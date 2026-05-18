@@ -52,7 +52,7 @@
 
                     <div class="min-w-0">
                         <p class="text-xs uppercase tracking-wide text-[#0F4C6C]/65">
-                            {{ $article->category?->name }} · {{ optional($article->published_at)->format('d M Y') }}
+                            {{ $article->category?->name }} · {{ optional($article->published_at)->format('d M Y') }} · {{ number_format((int) $article->view_count, 0, ',', '.') }} views
                         </p>
 
                         <a

@@ -23,6 +23,7 @@ class ArticleStoreRequest extends FormRequest
             'body' => ['required', 'string'],
             'content_type' => ['required', Rule::in(Article::CONTENT_TYPES)],
             'category_id' => ['required', 'exists:categories,id'],
+            'author_name' => ['nullable', 'string', 'max:255'],
             'featured_image_id' => ['nullable', 'exists:media,id'],
             'publish_at' => ['nullable', 'date'],
             'is_featured' => ['nullable', 'boolean'],

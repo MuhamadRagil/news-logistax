@@ -22,7 +22,7 @@
         <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#0F4C6C]/70 border-b border-[#0F4C6C]/10 pb-6">
             <span>
                 Penulis:
-                <strong class="text-[#0F4C6C]">{{ $article->author?->name }}</strong>
+                <strong class="text-[#0F4C6C]">{{ $article->display_author_name }}</strong>
             </span>
 
             <span>

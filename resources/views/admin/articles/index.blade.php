@@ -90,7 +90,7 @@
                         </td>
 
                         <td class="p-4 text-slate-600 whitespace-nowrap">
-                            {{ $article->author?->name ?? '-' }}
+                            {{ $article->display_author_name }}
                         </td>
 
                         <td class="p-4 text-right font-medium text-[#0F4C6C] whitespace-nowrap">

@@ -34,6 +34,7 @@ class Article extends Model
         'content_type',
         'category_id',
         'author_id',
+        'author_name',
         'editor_id',
         'featured_image_id',
         'publish_at',
@@ -93,6 +94,17 @@ class Article extends Model
         return $slug;
     }
 
+
+    public function getDisplayAuthorNameAttribute(): string
+    {
+        $manualName = trim((string) $this->author_name);
+
+        if ($manualName !== '') {
+            return $manualName;
+        }
+
+        return $this->author?->name ?: 'Redaksi Logistax';
+    }
 
     public function getReadTimeMinutesAttribute(): int
     {

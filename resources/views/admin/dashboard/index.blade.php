@@ -63,7 +63,7 @@
                             {{ $article->title }}
                         </a>
                         <p class="mt-1 text-xs text-slate-500">
-                            {{ $article->category?->name ?? 'Uncategorized' }} · {{ $article->author?->name ?? 'No author' }} · {{ optional($article->published_at)->format('d M Y') }}
+                            {{ $article->category?->name ?? 'Uncategorized' }} · {{ $article->display_author_name }} · {{ optional($article->published_at)->format('d M Y') }}
                         </p>
                     </div>
                     <p class="shrink-0 text-sm font-semibold text-[#0F4C6C]">{{ number_format((int) $article->view_count, 0, ',', '.') }} views</p>
@@ -119,7 +119,7 @@
                             </a>
                         </td>
                         <td class="py-3 px-5 text-slate-600">{{ $article->category?->name ?? '-' }}</td>
-                        <td class="py-3 px-5 text-slate-600">{{ $article->author?->name ?? '-' }}</td>
+                        <td class="py-3 px-5 text-slate-600">{{ $article->display_author_name }}</td>
                         <td class="py-3 px-5 text-right font-medium text-[#0F4C6C]">{{ number_format((int) $article->view_count, 0, ',', '.') }}</td>
                         <td class="py-3 px-5 text-slate-500">{{ optional($article->published_at)->format('d M Y H:i') }}</td>
                     </tr>

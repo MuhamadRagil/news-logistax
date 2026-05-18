@@ -45,7 +45,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('tags', AdminTagController::class)->except(['show']);
     Route::resource('media', AdminMediaController::class)->only(['index', 'store', 'destroy']);
     Route::resource('pages', AdminPageController::class)->only(['index', 'edit', 'update']);
-    Route::resource('users', AdminUserController::class)->only(['index', 'edit', 'update']);
+    Route::resource('users', AdminUserController::class)->except(['show']);
 
     Route::get('settings/general', [AdminSettingController::class, 'edit'])->name('settings.general.edit');
     Route::put('settings/general', [AdminSettingController::class, 'update'])->name('settings.general.update');

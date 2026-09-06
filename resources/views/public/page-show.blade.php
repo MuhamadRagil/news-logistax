@@ -1,6 +1,16 @@
 @extends('layouts.public')
 
+@php
+    $plainBody = trim(preg_replace('/\s+/', ' ', strip_tags((string) $page->body)));
+    $pageMetaDescription = $page->meta_description ?: $plainBody;
+    if ($pageMetaDescription && mb_strlen($pageMetaDescription) > 160) {
+        $pageMetaDescription = mb_substr($pageMetaDescription, 0, 157) . '...';
+    }
+@endphp
+
 @section('title', $page->meta_title ?? $page->title)
+@section('meta_description', $pageMetaDescription ?: 'Informasi institusional Logistax Newsroom.')
+@section('canonical', route('pages.show', $page->slug))
 
 @section('content')
 @php

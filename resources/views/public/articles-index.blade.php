@@ -1,6 +1,19 @@
 @extends('layouts.public')
 
+@php
+    // /artikel?category=X largely duplicates /kategori/X, so point the canonical
+    // there when a category filter is active alone; keep self-canonical otherwise
+    // (combined with a text search, or unfiltered, there's no cleaner URL to point to).
+    $activeCategorySlug = request('category');
+    $activeSearchTerm = request('q');
+    $indexCanonical = ($activeCategorySlug && ! $activeSearchTerm)
+        ? route('categories.show', $activeCategorySlug)
+        : url()->full();
+@endphp
+
 @section('title', 'Semua Artikel - Logistax Newsroom')
+@section('meta_description', 'Jelajahi seluruh artikel Logistax Newsroom seputar perpajakan, akuntansi, hukum, pengumuman, opini, dan press release.')
+@section('canonical', $indexCanonical)
 
 @section('content')
 <nav class="flex items-center gap-1.5 text-xs text-slate-500 mb-4">

@@ -1,6 +1,11 @@
 @extends('layouts.public')
 
 @section('title', 'Logistax Newsroom')
+@section('meta_description', 'Portal publikasi resmi Logistax untuk pembaruan perpajakan, akuntansi, hukum, pengumuman institusional, opini, dan press release.')
+@section('canonical', route('home'))
+@if($featured?->featuredImage)
+    @section('og_image', asset('storage/' . $featured->featuredImage->path))
+@endif
 
 @section('content')
 @php
@@ -63,6 +68,8 @@
                             class="w-[76px] h-[76px] rounded-lg object-cover shrink-0"
                             src="{{ asset('storage/' . $item->featuredImage->path) }}"
                             alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                            loading="lazy"
+                            decoding="async"
                         >
                     @else
                         <div class="w-[76px] h-[76px] rounded-lg bg-[#F1F5F9] shrink-0"></div>
@@ -106,6 +113,8 @@
                             class="w-full h-[100px] object-cover"
                             src="{{ asset('storage/' . $item->featuredImage->path) }}"
                             alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                            loading="lazy"
+                            decoding="async"
                         >
                     @else
                         <div class="w-full h-[100px] bg-[#F1F5F9]"></div>
@@ -172,6 +181,8 @@
                             class="w-14 h-14 rounded-md object-cover shrink-0"
                             src="{{ asset('storage/' . $item->featuredImage->path) }}"
                             alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                            loading="lazy"
+                            decoding="async"
                         >
                     @else
                         <div class="w-14 h-14 rounded-md bg-[#F1F5F9] shrink-0"></div>
@@ -217,6 +228,8 @@
                                 class="w-full h-[88px] object-cover"
                                 src="{{ asset('storage/' . $item->featuredImage->path) }}"
                                 alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                                loading="lazy"
+                                decoding="async"
                             >
                         @else
                             <div class="w-full h-[88px] bg-[#F1F5F9]"></div>

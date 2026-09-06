@@ -6,6 +6,8 @@
                     class="h-36 w-full object-cover"
                     src="{{ asset('storage/' . $article->featuredImage->path) }}"
                     alt="{{ $article->featuredImage->alt_text ?: $article->title }}"
+                    loading="lazy"
+                    decoding="async"
                 >
             </a>
         @else

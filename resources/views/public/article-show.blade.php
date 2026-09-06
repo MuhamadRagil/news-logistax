@@ -1,6 +1,22 @@
 @extends('layouts.public')
 
+@php
+    $metaDescription = $article->meta_description ?: $article->excerpt;
+    if ($metaDescription && mb_strlen($metaDescription) > 160) {
+        $metaDescription = mb_substr($metaDescription, 0, 157) . '...';
+    }
+@endphp
+
 @section('title', $article->meta_title ?? $article->title)
+@section('meta_description', $metaDescription ?: 'Artikel dari Logistax Newsroom.')
+@section('canonical', route('articles.show', $article->slug))
+@section('og_type', 'article')
+@if($article->published_at)
+    @section('og_published_time', $article->published_at->toIso8601String())
+@endif
+@if($article->featuredImage)
+    @section('og_image', asset('storage/' . $article->featuredImage->path))
+@endif
 
 @section('content')
 @php
@@ -251,6 +267,8 @@
                             class="w-full h-[88px] object-cover"
                             src="{{ asset('storage/' . $item->featuredImage->path) }}"
                             alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                            loading="lazy"
+                            decoding="async"
                         >
                     @else
                         <div class="w-full h-[88px] bg-[#F1F5F9]"></div>
@@ -288,6 +306,8 @@
                                 class="w-full h-[72px] object-cover"
                                 src="{{ asset('storage/' . $item->featuredImage->path) }}"
                                 alt="{{ $item->featuredImage->alt_text ?: $item->title }}"
+                                loading="lazy"
+                                decoding="async"
                             >
                         @else
                             <div class="w-full h-[72px] bg-[#F1F5F9]"></div>

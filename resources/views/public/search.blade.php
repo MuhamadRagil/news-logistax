@@ -1,6 +1,7 @@
 @extends('layouts.public')
 
 @section('title', 'Pencarian - Logistax Newsroom')
+@section('meta_description', $q !== '' ? "Hasil pencarian untuk \"{$q}\" di Logistax Newsroom." : 'Cari artikel seputar perpajakan, akuntansi, hukum, dan lainnya di Logistax Newsroom.')
 
 @section('content')
 <nav class="flex items-center gap-1.5 text-xs text-slate-500 mb-4">

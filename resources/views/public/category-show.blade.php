@@ -1,6 +1,8 @@
 @extends('layouts.public')
 
 @section('title', $category->name . ' - Logistax Newsroom')
+@section('meta_description', $category->description ?: 'Kumpulan artikel kategori ' . $category->name . ' dari Logistax Newsroom.')
+@section('canonical', route('categories.show', $category->slug))
 
 @section('content')
 <nav class="flex items-center gap-1.5 text-xs text-slate-500 mb-4">

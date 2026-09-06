@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    @php
+        $defaultMetaDescription = 'Portal publikasi resmi Logistax untuk pembaruan perpajakan, akuntansi, hukum, pengumuman institusional, opini, dan press release.';
+        $defaultOgImage = asset('images/logo.png');
+    @endphp
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Logistax News')</title>
+    <meta name="description" content="@yield('meta_description', $defaultMetaDescription)">
+    <link rel="canonical" href="@yield('canonical', url()->full())">
+
     <link rel="icon" type="images/logo.png" href="{{ asset('images/logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta property="og:site_name" content="Logistax Newsroom">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:title" content="@yield('title', 'Logistax News')">
+    <meta property="og:description" content="@yield('meta_description', $defaultMetaDescription)">
+    <meta property="og:url" content="@yield('canonical', url()->full())">
+    <meta property="og:image" content="@yield('og_image', $defaultOgImage)">
+    @hasSection('og_published_time')
+        <meta property="article:published_time" content="@yield('og_published_time')">
+    @endif
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Logistax News')">
+    <meta name="twitter:description" content="@yield('meta_description', $defaultMetaDescription)">
+    <meta name="twitter:image" content="@yield('og_image', $defaultOgImage)">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#F8FAFC] text-[#123247] antialiased">

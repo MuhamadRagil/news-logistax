@@ -31,22 +31,7 @@ class HomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        $popular = Article::query()
-            ->with('category')
-            ->where('status', Article::STATUS_PUBLISHED)
-            ->where('published_at', '>=', now()->subDays(7))
-            ->orderByDesc('view_count')
-            ->limit(5)
-            ->get();
-
-        if ($popular->count() < 5) {
-            $popular = Article::query()
-                ->with('category')
-                ->where('status', Article::STATUS_PUBLISHED)
-                ->orderByDesc('view_count')
-                ->limit(5)
-                ->get();
-        }
+        $popular = Article::popular();
 
         $categoryRows = $categories
             ->take(3)

@@ -133,6 +133,28 @@ class Article extends Model
         };
     }
 
+    public static function popular(int $limit = 5, int $days = 7)
+    {
+        $popular = static::query()
+            ->with(['category', 'featuredImage'])
+            ->where('status', self::STATUS_PUBLISHED)
+            ->where('published_at', '>=', now()->subDays($days))
+            ->orderByDesc('view_count')
+            ->limit($limit)
+            ->get();
+
+        if ($popular->count() < $limit) {
+            $popular = static::query()
+                ->with(['category', 'featuredImage'])
+                ->where('status', self::STATUS_PUBLISHED)
+                ->orderByDesc('view_count')
+                ->limit($limit)
+                ->get();
+        }
+
+        return $popular;
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

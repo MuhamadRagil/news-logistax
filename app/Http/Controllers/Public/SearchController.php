@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -25,6 +26,11 @@ class SearchController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        return view('public.search', compact('articles', 'q'));
+        $categories = Category::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('public.search', compact('articles', 'q', 'categories'));
     }
 }

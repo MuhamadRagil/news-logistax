@@ -1,0 +1,29 @@
+/* Link-tax typography tokens.
+   Plus Jakarta Sans for all text; JetBrains Mono for numbers, money,
+   and document numbers (INV-2026/0001, JU/2026/0001) — always tabular-nums. */
+:root {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+    /* Scale (Tailwind-equivalent sizes as used in the app) */
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-base: 16px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 30px;
+
+    /* Page heading: text-2xl font-extrabold tracking-[-0.02em] */
+    --heading-page-size: 24px;
+    --heading-page-weight: 800;
+    --heading-page-tracking: -0.02em;
+    /* Section heading: text-lg font-bold tracking-[-0.01em] */
+    --heading-section-size: 18px;
+    --heading-section-weight: 700;
+    --heading-section-tracking: -0.01em;
+    /* Table header / KPI label: text-xs font-medium uppercase tracking-wide */
+    --label-caps-size: 12px;
+    --label-caps-weight: 500;
+    --label-caps-tracking: 0.025em;
+}

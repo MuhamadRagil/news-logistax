@@ -1,0 +1,5 @@
+/* Webfonts — Link-tax uses Plus Jakarta Sans (text) and JetBrains Mono
+   (numbers/money/document numbers). The production app loads them from
+   fonts.bunny.net; no font binaries live in the repo, so we load the same
+   families from Google Fonts CDN. SUBSTITUTION FLAG: same families, CDN-hosted. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');

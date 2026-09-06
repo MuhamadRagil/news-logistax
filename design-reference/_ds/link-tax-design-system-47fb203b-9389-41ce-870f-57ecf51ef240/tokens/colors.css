@@ -1,0 +1,73 @@
+/* Link-tax color tokens — exact HSL values from resources/css/app.css (light theme).
+   Raw triplets (--*-hsl) allow alpha composition: hsl(var(--primary-hsl) / 0.1) */
+:root {
+    /* ---- Raw HSL triplets (shadcn convention, verbatim from app.css) ---- */
+    --background-hsl: 210 25% 98%; /* @kind color */ /* #FAFBFC — canvas */
+    --foreground-hsl: 222 47% 11%; /* @kind color */ /* #0F172A — slate-900 */
+    --card-hsl: 0 0% 100%; /* @kind color */
+    --primary-hsl: 243 75% 59%; /* @kind color */ /* #4F46E5 — indigo */
+    --secondary-hsl: 226 100% 97%; /* @kind color */ /* #EEF2FF — indigo-50 */
+    --secondary-foreground-hsl: 245 58% 51%; /* @kind color */ /* #4338CA */
+    --muted-hsl: 210 21% 95%; /* @kind color */ /* #EEF1F4 */
+    --muted-foreground-hsl: 215 16% 47%; /* @kind color */ /* #64748B — slate-500 */
+    --destructive-hsl: 0 72% 51%; /* @kind color */ /* #DC2626 */
+    --success-hsl: 142 76% 36%; /* @kind color */ /* #16A34A */
+    --warning-hsl: 32 95% 44%; /* @kind color */ /* #D97706 */
+    --info-hsl: 243 75% 59%; /* @kind color */
+    --border-hsl: 214 16% 91%; /* @kind color */ /* #E5E8EC */
+    --input-hsl: 214 16% 88%; /* @kind color */
+
+    /* ---- Resolved colors ---- */
+    --background: hsl(var(--background-hsl));
+    --foreground: hsl(var(--foreground-hsl));
+    --card: hsl(var(--card-hsl));
+    --card-foreground: hsl(var(--foreground-hsl));
+    --popover: #FFFFFF;
+    --popover-foreground: hsl(var(--foreground-hsl));
+    --primary: hsl(var(--primary-hsl));
+    --primary-foreground: #FFFFFF;
+    --secondary: hsl(var(--secondary-hsl));
+    --secondary-foreground: hsl(var(--secondary-foreground-hsl));
+    --muted: hsl(var(--muted-hsl));
+    --muted-foreground: hsl(var(--muted-foreground-hsl));
+    --accent: hsl(var(--secondary-hsl));
+    --accent-foreground: hsl(var(--secondary-foreground-hsl));
+    --destructive: hsl(var(--destructive-hsl));
+    --destructive-foreground: #FAFAFA;
+    --success: hsl(var(--success-hsl));
+    --success-foreground: #FFFFFF;
+    --warning: hsl(var(--warning-hsl));
+    --warning-foreground: #FFFFFF;
+    --info: hsl(var(--info-hsl));
+    --info-foreground: #FFFFFF;
+    --border: hsl(var(--border-hsl));
+    --input: hsl(var(--input-hsl));
+    --ring: hsl(var(--primary-hsl));
+
+    /* ---- Charts ---- */
+    --chart-1: hsl(243 75% 59%);
+    --chart-2: hsl(142 76% 36%);
+    --chart-3: hsl(32 95% 44%);
+    --chart-4: hsl(199 89% 48%);
+    --chart-5: hsl(262 83% 58%);
+
+    /* ---- Sidebar (white shell + thin border, active item indigo-50) ---- */
+    --sidebar-background: #FFFFFF;
+    --sidebar-foreground: hsl(215 19% 35%);       /* #475569 — slate-600 */
+    --sidebar-primary: hsl(243 75% 59%);
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: hsl(226 100% 97%);          /* active: #EEF2FF */
+    --sidebar-accent-foreground: hsl(245 58% 51%);
+    --sidebar-border: hsl(216 13% 93%);           /* #EAECEF */
+    --sidebar-ring: hsl(243 75% 59%);
+
+    /* ---- Semantic aliases ---- */
+    --surface-canvas: var(--background);
+    --surface-card: var(--card);
+    --text-body: var(--foreground);
+    --text-secondary: var(--muted-foreground);
+    --text-link: var(--primary);
+    --status-draft: var(--muted-foreground);
+    --status-posted: var(--success);
+    --status-void: var(--destructive);
+}

@@ -113,6 +113,26 @@ class Article extends Model
         return max(1, (int) ceil($wordCount / 200));
     }
 
+    public function getContentTypeLabelAttribute(): string
+    {
+        return match ($this->content_type) {
+            'announcement' => 'Pengumuman',
+            'opinion' => 'Opini',
+            'press_release' => 'Press Release',
+            default => 'Berita',
+        };
+    }
+
+    public function getContentTypeBadgeClassAttribute(): string
+    {
+        return match ($this->content_type) {
+            'announcement' => 'bg-[#FEF3E2] text-[#D97706]',
+            'opinion' => 'bg-[#F1F5F9] text-[#64748B]',
+            'press_release' => 'bg-[#F1EAFE] text-[#7C3AED]',
+            default => 'bg-[#E8F5FB] text-[#0F4C6C]',
+        };
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

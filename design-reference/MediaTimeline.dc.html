@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="padding:8px 32px 28px;background:#F7FAFC;font-family:'Plus Jakarta Sans',sans-serif;">
+  <h2 style="font-size:19px;font-weight:800;color:#0F172A;margin:0 0 14px;letter-spacing:-0.01em;">Berita Terkini</h2>
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:4px 20px;display:grid;grid-template-columns:1fr 1fr;gap:0 32px;">
+    <sc-for list="{{ items }}" as="item" hint-placeholder-count="14">
+      <div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #EEF1F4;">
+        <div style="width:56px;height:56px;flex-shrink:0;border-radius:6px;background:{{ item.tagBg }};"></div>
+        <div style="min-width:0;">
+          <div style="font-size:13px;font-weight:700;color:#0F172A;line-height:1.3;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{{ item.title }}</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:5px;">
+            <span style="font-size:10px;font-weight:700;color:#0F4C6C;text-transform:uppercase;letter-spacing:0.03em;">{{ item.tag }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#94A3B8;">{{ item.time }}</span>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const src = [
+      ["Nasional", "Revisi UU Cipta Kerja Masuk Tahap Pembahasan Akhir di DPR", "06:05"],
+      ["Bisnis", "Maskapai Nasional Tambah Rute Penerbangan ke Kawasan Timur", "05:50"],
+      ["Ekonomi", "Cadangan Devisa Agustus Naik Jadi USD 152 Miliar", "05:35"],
+      ["Opini", "Transisi Energi dan Tantangan Pembiayaan Hijau", "05:20"],
+      ["Nasional", "Pemerintah Siapkan Skema Baru Subsidi Pupuk 2027", "05:05"],
+      ["Bisnis", "Produsen Tekstil Lokal Ekspansi ke Pasar Timur Tengah", "04:50"],
+      ["Pengumuman", "Perpanjangan Batas Waktu Pelaporan SPT Tahunan", "04:35"],
+      ["Ekonomi", "Nilai Tukar Rupiah Menguat Tipis Terhadap Dolar AS", "04:20"],
+      ["Nasional", "Proyek Tol Trans Sumatra Tahap II Mulai Dikerjakan", "04:05"],
+      ["Bisnis", "E-commerce Lokal Catat Lonjakan Transaksi Jelang Akhir Tahun", "03:50"],
+      ["Opini", "Reformasi Birokrasi dan Efisiensi Anggaran Daerah", "03:35"],
+      ["Ekonomi", "Harga Emas Antam Naik Rp 8.000 per Gram Hari Ini", "03:20"],
+      ["Nasional", "BMKG Ingatkan Potensi Cuaca Ekstrem di Wilayah Barat", "03:05"],
+      ["Pengumuman", "Jadwal Uji Coba Sistem Pembayaran Pajak Daerah Terbaru", "02:50"]
+    ];
+    const bgs = { Nasional: "#E8F5FB", Bisnis: "#F1EAFE", Ekonomi: "#E7F7EE", Opini: "#F1F5F9", Pengumuman: "#FEF3E2" };
+    return { items: src.map(([tag, title, time]) => ({ tag, title, time, tagBg: bgs[tag] })) };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* Link-tax layout tokens — radius, shadows, spacing, base element styles. */
+:root {
+    /* Radius: --radius: 0.75rem (12px) is the dominant radius.
+       Cards/tables use rounded-xl (12px); buttons/inputs rounded-md (10px = radius-2px);
+       badges/avatars are pills. Per tailwind.config.js: lg=var(--radius), md=-2px, sm=-4px */
+    --radius: 12px;
+    --radius-lg: 12px;
+    --radius-md: 10px;
+    --radius-sm: 8px;
+    --radius-pill: 9999px;
+
+    /* Shadows — subtle only. Cards: shadow-sm. Toasts/popovers: shadow-lg.
+       Indigo glow reserved for landing-page CTAs. */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-primary-glow: 0 4px 12px hsl(var(--primary-hsl) / 0.35);
+
+    /* Spacing rhythm (Tailwind 4px grid). Page padding: 16px mobile / 24px desktop.
+       Page sections stack with 24px gap; card padding 20px (KPI) or 24px. */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+
+    --sidebar-width: 256px;
+    --sidebar-width-icon: 48px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="padding:8px 32px 28px;background:#F7FAFC;font-family:'Plus Jakarta Sans',sans-serif;">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;">
+    <h2 style="font-size:19px;font-weight:800;color:#0F172A;margin:0;letter-spacing:-0.01em;">{{ title }}</h2>
+    <a href="#" style="font-size:12px;font-weight:700;color:#0F4C6C;text-decoration:none;">Lihat semua &rarr;</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+    <sc-for list="{{ items }}" as="item" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;">
+        <div style="width:100%;height:88px;background:#E2E8F0;"></div>
+        <div style="padding:10px 12px;">
+          <div style="font-size:13px;font-weight:700;color:#0F172A;line-height:1.32;min-height:34px;">{{ item.title }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#94A3B8;margin-top:8px;">{{ item.time }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const datasets = {
+      ekonomi: [
+        { title: "IHSG Ditutup Menguat 0,8 Persen Sore Ini", time: "15:20" },
+        { title: "Harga Beras Nasional Turun Jelang Panen Raya", time: "14:55" },
+        { title: "OJK Perketat Aturan Pinjaman Online", time: "14:10" },
+        { title: "Investasi Asing di Sektor Manufaktur Naik 12 Persen", time: "13:40" }
+      ],
+      regional: [
+        { title: "Pemprov Jawa Barat Luncurkan Program UMKM Naik Kelas", time: "12:30" },
+        { title: "Banjir Rob Rendam Kawasan Pesisir Semarang", time: "11:45" },
+        { title: "Sulawesi Selatan Catat Surplus Beras Tahun Ini", time: "10:55" },
+        { title: "Bali Perluas Kawasan Wisata Berkelanjutan", time: "10:15" }
+      ]
+    };
+    const variant = this.props.variant || "ekonomi";
+    return {
+      title: this.props.title || "Ekonomi Hari Ini",
+      items: datasets[variant] || datasets.ekonomi,
+      slotPrefix: "cat-" + variant
+    };
+  }
+}
+
+</script>
+</body>
+</html>

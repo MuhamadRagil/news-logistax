@@ -31,6 +31,38 @@ class HomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view('public.home', compact('featured', 'latest', 'categories'));
+        $popular = Article::query()
+            ->with('category')
+            ->where('status', Article::STATUS_PUBLISHED)
+            ->where('published_at', '>=', now()->subDays(7))
+            ->orderByDesc('view_count')
+            ->limit(5)
+            ->get();
+
+        if ($popular->count() < 5) {
+            $popular = Article::query()
+                ->with('category')
+                ->where('status', Article::STATUS_PUBLISHED)
+                ->orderByDesc('view_count')
+                ->limit(5)
+                ->get();
+        }
+
+        $categoryRows = $categories
+            ->take(3)
+            ->map(fn (Category $category) => [
+                'category' => $category,
+                'articles' => Article::query()
+                    ->with('featuredImage')
+                    ->where('status', Article::STATUS_PUBLISHED)
+                    ->where('category_id', $category->id)
+                    ->latest('published_at')
+                    ->limit(4)
+                    ->get(),
+            ])
+            ->filter(fn (array $row) => $row['articles']->isNotEmpty())
+            ->values();
+
+        return view('public.home', compact('featured', 'latest', 'categories', 'popular', 'categoryRows'));
     }
 }

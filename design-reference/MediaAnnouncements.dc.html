@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="background:#EEF6FA;padding:36px 32px;font-family:'Plus Jakarta Sans',sans-serif;">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;">
+    <h2 style="font-size:20px;font-weight:800;color:#0F172A;margin:0;letter-spacing:-0.01em;">Pengumuman &amp; Rilis Pers</h2>
+    <a href="#" style="font-size:13px;font-weight:700;color:#0F4C6C;text-decoration:none;">Lihat semua &rarr;</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <sc-for list="{{ items }}" as="item" hint-placeholder-count="3">
+      <div style="background:#fff;border:1px solid #DCEAF1;border-radius:14px;padding:20px;">
+        <span style="background:#FEF3E2;color:#D97706;font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;">{{ item.tag }}</span>
+        <div style="font-size:16px;font-weight:700;color:#0F172A;line-height:1.35;margin-top:12px;">{{ item.title }}</div>
+        <p style="font-size:13px;color:#64748B;line-height:1.55;margin:8px 0 0;">{{ item.excerpt }}</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#94A3B8;margin-top:14px;">{{ item.time }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      items: [
+        { tag: "Rilis Pers", title: "LOGISTAX Media Luncurkan Rubrik Ekonomi Daerah", excerpt: "Rubrik baru akan menyoroti perkembangan ekonomi di luar Jawa dengan liputan mendalam setiap pekan.", time: "05 Sep 2026" },
+        { tag: "Pengumuman", title: "Perubahan Jam Operasional Redaksi Selama Libur Nasional", excerpt: "Layanan pembaruan berita tetap berjalan dengan frekuensi terbatas pada tanggal merah.", time: "03 Sep 2026" },
+        { tag: "Rilis Pers", title: "Kemitraan dengan Asosiasi UMKM untuk Liputan Bulanan", excerpt: "Kerja sama ini bertujuan memperluas akses informasi kebijakan bagi pelaku usaha kecil.", time: "01 Sep 2026" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

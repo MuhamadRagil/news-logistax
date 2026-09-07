@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="rounded-xl bg-white border border-slate-200 p-5 sm:p-6 shadow-sm mb-6">
-    <h3 class="text-sm uppercase tracking-[0.16em] text-slate-500 mb-4">Upload Image</h3>
+    <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500 mb-4">Upload Image</h3>
 
     <form method="POST" action="{{ route('admin.media.store') }}" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-4">
         @csrf
@@ -37,7 +37,7 @@
             placeholder="Caption"
         ></textarea>
 
-        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white w-fit hover:bg-[#0d425d] transition-colors">
+        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white font-bold w-fit hover:bg-[#0d425d] transition-colors">
             Upload
         </button>
     </form>
@@ -52,7 +52,7 @@
                 class="w-full h-36 object-cover bg-slate-100 rounded-lg"
             >
 
-            <p class="text-xs mt-3 truncate text-slate-700">
+            <p class="text-xs mt-3 truncate font-bold text-slate-700">
                 {{ $item->filename }}
             </p>
 
@@ -69,7 +69,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button class="text-xs text-rose-700 hover:text-rose-900">
+                <button class="text-xs font-semibold text-rose-700 hover:text-rose-900">
                     Delete
                 </button>
             </form>

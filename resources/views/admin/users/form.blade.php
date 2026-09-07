@@ -113,7 +113,7 @@
     </div>
 
     <div class="flex flex-wrap gap-3">
-        <button type="submit" class="rounded-lg bg-[#0F4C6C] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0d425d]">{{ $submitLabel }}</button>
-        <a href="{{ route('admin.users.index') }}" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">Back</a>
+        <button type="submit" class="rounded-lg bg-[#0F4C6C] px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-[#0d425d]">{{ $submitLabel }}</button>
+        <a href="{{ route('admin.users.index') }}" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50">Back</a>
     </div>
 </form>

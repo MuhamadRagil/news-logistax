@@ -50,8 +50,8 @@
     </div>
 
     <div class="flex gap-3">
-        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white hover:bg-[#0d425d] transition-colors">Save</button>
-        <a href="{{ route('admin.pages.index') }}" class="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 transition-colors">Back</a>
+        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white font-bold hover:bg-[#0d425d] transition-colors">Save</button>
+        <a href="{{ route('admin.pages.index') }}" class="px-4 py-2 rounded-lg border border-slate-300 bg-white font-semibold hover:bg-slate-50 transition-colors">Back</a>
     </div>
 </form>
 @endsection

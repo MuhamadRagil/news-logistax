@@ -41,12 +41,12 @@
                 @endforeach
             </select>
 
-            <button class="px-4 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition-colors">
+            <button class="px-4 py-2 rounded-lg bg-slate-800 text-white font-semibold hover:bg-slate-700 transition-colors">
                 Apply Filters
             </button>
         </form>
 
-        <a href="{{ route('admin.articles.create') }}" class="inline-flex justify-center px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm font-medium hover:bg-[#0d425d] transition-colors">
+        <a href="{{ route('admin.articles.create') }}" class="inline-flex justify-center px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm font-bold hover:bg-[#0d425d] transition-colors">
             Create Article
         </a>
     </div>
@@ -57,31 +57,31 @@
         <table class="w-full text-sm">
             <thead class="bg-slate-50 text-slate-600">
                 <tr>
-                    <th class="p-4 text-left font-medium">Title</th>
-                    <th class="p-4 text-left font-medium">Status</th>
-                    <th class="p-4 text-left font-medium">Category</th>
-                    <th class="p-4 text-left font-medium">Author</th>
-                    <th class="p-4 text-right font-medium">Views</th>
-                    <th class="p-4 text-left font-medium">Updated At</th>
-                    <th class="p-4 text-left font-medium">Action</th>
+                    <th class="p-4 text-left font-bold">Title</th>
+                    <th class="p-4 text-left font-bold">Status</th>
+                    <th class="p-4 text-left font-bold">Category</th>
+                    <th class="p-4 text-left font-bold">Author</th>
+                    <th class="p-4 text-right font-bold">Views</th>
+                    <th class="p-4 text-left font-bold">Updated At</th>
+                    <th class="p-4 text-left font-bold">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($articles as $article)
                     <tr class="border-t border-slate-200 hover:bg-slate-50/70">
                         <td class="p-4 min-w-[260px]">
-                            <p class="font-medium text-slate-900">{{ $article->title }}</p>
+                            <p class="font-bold text-slate-900">{{ $article->title }}</p>
                             <p class="text-xs text-slate-500 mt-1">
                                 {{ ucfirst(str_replace('_', ' ', $article->content_type)) }}
                                 @if($article->published_at)
-                                    · Published {{ $article->published_at->format('d M Y') }}
+                                    · Published <span class="font-mono">{{ $article->published_at->format('d M Y') }}</span>
                                 @endif
                             </p>
                         </td>
 
                         <td class="p-4">
-                            <span class="px-2.5 py-1 text-xs rounded-full border border-[#0F4C6C]/20 bg-[#F1F7FB] text-[#0F4C6C] whitespace-nowrap">
-                                {{ ucfirst(str_replace('_', ' ', $article->status)) }}
+                            <span class="px-2.5 py-1 text-xs font-semibold rounded-full whitespace-nowrap {{ $article->status_badge_class }}">
+                                {{ $article->status_label }}
                             </span>
                         </td>
 
@@ -93,16 +93,16 @@
                             {{ $article->display_author_name }}
                         </td>
 
-                        <td class="p-4 text-right font-medium text-[#0F4C6C] whitespace-nowrap">
+                        <td class="p-4 text-right font-mono font-bold text-[#0F4C6C] whitespace-nowrap">
                             {{ number_format((int) $article->view_count, 0, ',', '.') }}
                         </td>
 
-                        <td class="p-4 text-slate-500 whitespace-nowrap">
+                        <td class="p-4 text-slate-500 font-mono whitespace-nowrap">
                             {{ $article->updated_at?->format('d M Y H:i') }}
                         </td>
 
                         <td class="p-4">
-                            <div class="flex gap-3 text-sm">
+                            <div class="flex gap-3 text-sm font-semibold">
                                 <a class="text-blue-700 hover:text-blue-900" href="{{ route('admin.articles.edit', $article) }}">
                                     Edit
                                 </a>

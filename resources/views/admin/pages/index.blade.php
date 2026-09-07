@@ -8,23 +8,25 @@
     <table class="w-full text-sm">
         <thead class="bg-slate-50 text-slate-600">
             <tr>
-                <th class="px-5 py-3 text-left font-medium">Title</th>
-                <th class="px-5 py-3 text-left font-medium">Slug</th>
-                <th class="px-5 py-3 text-left font-medium">Status</th>
-                <th class="px-5 py-3 text-left font-medium">Action</th>
+                <th class="px-5 py-3 text-left font-bold">Title</th>
+                <th class="px-5 py-3 text-left font-bold">Slug</th>
+                <th class="px-5 py-3 text-left font-bold">Status</th>
+                <th class="px-5 py-3 text-left font-bold">Action</th>
             </tr>
         </thead>
         <tbody>
             @forelse($pages as $page)
                 <tr class="border-t border-slate-200 hover:bg-slate-50/70">
-                    <td class="px-5 py-3 font-medium">{{ $page->title }}</td>
-                    <td class="px-5 py-3 text-slate-600">{{ $page->slug }}</td>
+                    <td class="px-5 py-3 font-bold text-slate-900">{{ $page->title }}</td>
+                    <td class="px-5 py-3 text-slate-600 font-mono">{{ $page->slug }}</td>
                     <td class="px-5 py-3">
-                        <span class="px-2.5 py-1 text-xs rounded-full border border-[#0F4C6C]/20 bg-[#F1F7FB] text-[#0F4C6C]">
-                            {{ $page->status }}
-                        </span>
+                        @if($page->status === 'published')
+                            <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">Published</span>
+                        @else
+                            <span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-500 ring-1 ring-slate-200">{{ ucfirst($page->status) }}</span>
+                        @endif
                     </td>
-                    <td class="px-5 py-3">
+                    <td class="px-5 py-3 font-semibold">
                         <a class="text-blue-700 hover:text-blue-900" href="{{ route('admin.pages.edit', $page) }}">
                             Edit
                         </a>

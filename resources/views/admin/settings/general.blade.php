@@ -42,7 +42,7 @@
     </div>
 
     <div class="pt-2">
-        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white hover:bg-[#0d425d] transition-colors">
+        <button class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white font-bold hover:bg-[#0d425d] transition-colors">
             Save Settings
         </button>
     </div>

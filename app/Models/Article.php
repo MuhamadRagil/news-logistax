@@ -135,6 +135,22 @@ class Article extends Model
         };
     }
 
+    public function getStatusLabelAttribute(): string
+    {
+        return ucfirst(str_replace('_', ' ', $this->status));
+    }
+
+    public function getStatusBadgeClassAttribute(): string
+    {
+        return match ($this->status) {
+            self::STATUS_PENDING_REVIEW => 'bg-amber-50 text-amber-700 ring-1 ring-amber-200',
+            self::STATUS_APPROVED => 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200',
+            self::STATUS_SCHEDULED => 'bg-sky-50 text-sky-700 ring-1 ring-sky-200',
+            self::STATUS_PUBLISHED => 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200',
+            default => 'bg-slate-100 text-slate-600 ring-1 ring-slate-200',
+        };
+    }
+
     public static function popular(int $limit = 5, int $days = 7)
     {
         // Cache only the plain ID list (never Eloquent objects: this app's cache

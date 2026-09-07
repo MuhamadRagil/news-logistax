@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="mb-4 flex justify-end">
-    <a href="{{ route('admin.tags.create') }}" class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm hover:bg-[#0d425d] transition-colors">
+    <a href="{{ route('admin.tags.create') }}" class="px-4 py-2 rounded-lg bg-[#0F4C6C] text-white text-sm font-bold hover:bg-[#0d425d] transition-colors">
         New Tag
     </a>
 </div>
@@ -14,17 +14,17 @@
     <table class="w-full text-sm">
         <thead class="bg-slate-50 text-slate-600">
             <tr>
-                <th class="px-5 py-3 text-left font-medium">Name</th>
-                <th class="px-5 py-3 text-left font-medium">Slug</th>
-                <th class="px-5 py-3 text-left font-medium">Action</th>
+                <th class="px-5 py-3 text-left font-bold">Name</th>
+                <th class="px-5 py-3 text-left font-bold">Slug</th>
+                <th class="px-5 py-3 text-left font-bold">Action</th>
             </tr>
         </thead>
         <tbody>
             @forelse($tags as $tag)
                 <tr class="border-t border-slate-200 hover:bg-slate-50/70">
-                    <td class="px-5 py-3 font-medium">{{ $tag->name }}</td>
-                    <td class="px-5 py-3 text-slate-600">{{ $tag->slug }}</td>
-                    <td class="px-5 py-3">
+                    <td class="px-5 py-3 font-bold text-slate-900">{{ $tag->name }}</td>
+                    <td class="px-5 py-3 text-slate-600 font-mono">{{ $tag->slug }}</td>
+                    <td class="px-5 py-3 font-semibold">
                         <a href="{{ route('admin.tags.edit', $tag) }}" class="text-blue-700 hover:text-blue-900">
                             Edit
                         </a>

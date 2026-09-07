@@ -45,11 +45,9 @@
     @if(($tickerArticles ?? collect())->isNotEmpty())
         <div class="bg-[#0F4C6C] text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 py-1.5">
-                <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide">
-                    <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path d="M11 2 3.5 11.5H9L8 18l7.5-9.5H10l1-6.5Z" />
-                    </svg>
-                    Terkini
+                <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-[#3FA7D6] px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#0F4C6C]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0F4C6C]"></span>
+                    Breaking News
                 </span>
 
                 <div class="relative flex-1 overflow-hidden">
@@ -145,7 +143,7 @@
                 @foreach($trendingTags as $tag)
                     <a
                         href="{{ route('search.index', ['q' => $tag->name]) }}"
-                        class="shrink-0 rounded-full border border-[#3FA7D6]/40 bg-[#3FA7D6]/5 px-3 py-1 text-[#0F4C6C] hover:bg-[#3FA7D6]/15 transition-colors whitespace-nowrap"
+                        class="shrink-0 rounded-full bg-[#E8F5FB] px-3 py-1 text-[#0F4C6C] hover:bg-[#d7ecf9] transition-colors whitespace-nowrap"
                     >
                         #{{ $tag->name }}
                     </a>
@@ -166,7 +164,7 @@
                     @foreach($trendingTags as $tag)
                         <a
                             href="{{ route('search.index', ['q' => $tag->name]) }}"
-                            class="rounded-full border border-[#3FA7D6]/40 bg-[#3FA7D6]/5 px-3 py-1 text-xs text-[#0F4C6C] hover:bg-[#3FA7D6]/15 transition-colors"
+                            class="rounded-full bg-[#E8F5FB] px-3 py-1 text-xs text-[#0F4C6C] hover:bg-[#d7ecf9] transition-colors"
                         >
                             #{{ $tag->name }}
                         </a>
@@ -261,7 +259,7 @@
     </div>
 
     <div class="border-t border-white/20 py-4 text-center text-xs text-white/70">
-        © {{ date('Y') }} Logistax. All rights reserved.
+        &copy; {{ date('Y') }} Logistax Newsroom &mdash; PT Logistax Mitratama Solusi. Hak cipta dilindungi.
     </div>
 </footer>
 

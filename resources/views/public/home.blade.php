@@ -251,7 +251,7 @@
                         <div class="text-[13px] font-bold text-[#0F172A] leading-snug group-hover:text-[#0F4C6C] transition-colors">
                             {{ $item->title }}
                         </div>
-                        <div class="text-[10px] font-semibold text-[#0F4C6C] uppercase tracking-wide mt-1.5">
+                        <div class="text-[10px] font-bold text-[#0F4C6C] uppercase tracking-wide mt-1.5">
                             {{ $item->category?->name ?? $item->content_type_label }}
                         </div>
                     </div>

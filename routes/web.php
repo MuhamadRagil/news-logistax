@@ -15,6 +15,7 @@ use App\Http\Controllers\Public\CategoryController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\PageController;
 use App\Http\Controllers\Public\SearchController;
+use App\Http\Controllers\Public\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -23,6 +24,8 @@ Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('article
 Route::get('/kategori/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/pencarian', [SearchController::class, 'index'])->name('search.index');
 Route::get('/halaman/{slug}', [PageController::class, 'show'])->name('pages.show');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');
 
 
 Route::middleware('guest')->group(function () {

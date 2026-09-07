@@ -5,6 +5,44 @@
     if ($metaDescription && mb_strlen($metaDescription) > 160) {
         $metaDescription = mb_substr($metaDescription, 0, 157) . '...';
     }
+
+    $newsArticleLd = [
+        '@context' => 'https://schema.org',
+        '@type' => 'NewsArticle',
+        'headline' => $article->title,
+        'description' => $metaDescription,
+        'datePublished' => optional($article->published_at)->toIso8601String(),
+        'dateModified' => optional($article->updated_at ?? $article->published_at)->toIso8601String(),
+        'author' => [
+            '@type' => 'Person',
+            'name' => $article->display_author_name,
+        ],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'Logistax Newsroom',
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => asset('images/logo.png'),
+            ],
+        ],
+        'mainEntityOfPage' => [
+            '@type' => 'WebPage',
+            '@id' => route('articles.show', $article->slug),
+        ],
+    ];
+
+    if ($article->category) {
+        $newsArticleLd['articleSection'] = $article->category->name;
+    }
+
+    if ($article->featuredImage) {
+        $newsArticleLd['image'] = [asset('storage/' . $article->featuredImage->path)];
+    }
+
+    $newsArticleLdJson = json_encode(
+        $newsArticleLd,
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+    );
 @endphp
 
 @section('title', $article->meta_title ?? $article->title)
@@ -17,6 +55,10 @@
 @if($article->featuredImage)
     @section('og_image', asset('storage/' . $article->featuredImage->path))
 @endif
+
+@section('structured_data')
+    <script type="application/ld+json">{!! $newsArticleLdJson !!}</script>
+@endsection
 
 @section('content')
 @php

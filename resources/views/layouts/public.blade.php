@@ -33,6 +33,8 @@
     <meta name="twitter:description" content="@yield('meta_description', $defaultMetaDescription)">
     <meta name="twitter:image" content="@yield('og_image', $defaultOgImage)">
 
+    @yield('structured_data')
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#F8FAFC] text-[#123247] antialiased">

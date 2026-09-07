@@ -1,11 +1,37 @@
 @extends('layouts.public')
 
+@php
+    $homeLd = [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => 'Logistax Newsroom',
+        'url' => route('home'),
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'Logistax Newsroom',
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => asset('images/logo.png'),
+            ],
+        ],
+    ];
+
+    $homeLdJson = json_encode(
+        $homeLd,
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+    );
+@endphp
+
 @section('title', 'Logistax Newsroom')
 @section('meta_description', 'Portal publikasi resmi Logistax untuk pembaruan perpajakan, akuntansi, hukum, pengumuman institusional, opini, dan press release.')
 @section('canonical', route('home'))
 @if($featured?->featuredImage)
     @section('og_image', asset('storage/' . $featured->featuredImage->path))
 @endif
+
+@section('structured_data')
+    <script type="application/ld+json">{!! $homeLdJson !!}</script>
+@endsection
 
 @section('content')
 @php

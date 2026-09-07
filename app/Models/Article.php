@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Article extends Model
@@ -135,24 +137,44 @@ class Article extends Model
 
     public static function popular(int $limit = 5, int $days = 7)
     {
-        $popular = static::query()
-            ->with(['category', 'featuredImage'])
-            ->where('status', self::STATUS_PUBLISHED)
-            ->where('published_at', '>=', now()->subDays($days))
-            ->orderByDesc('view_count')
-            ->limit($limit)
-            ->get();
-
-        if ($popular->count() < $limit) {
-            $popular = static::query()
-                ->with(['category', 'featuredImage'])
+        // Cache only the plain ID list (never Eloquent objects: this app's cache
+        // config sets `serializable_classes => false` to block object unserialization
+        // from cache, a hardening against gadget-chain attacks if APP_KEY leaks).
+        // Re-querying by ID also keeps view_count/etc. fresh instead of stale for
+        // the cache's lifetime.
+        $ids = Cache::remember("articles.popular.ids.{$limit}.{$days}", 300, function () use ($limit, $days) {
+            $ids = static::query()
                 ->where('status', self::STATUS_PUBLISHED)
+                ->where('published_at', '>=', now()->subDays($days))
                 ->orderByDesc('view_count')
                 ->limit($limit)
-                ->get();
+                ->pluck('id');
+
+            if ($ids->count() < $limit) {
+                $ids = static::query()
+                    ->where('status', self::STATUS_PUBLISHED)
+                    ->orderByDesc('view_count')
+                    ->limit($limit)
+                    ->pluck('id');
+            }
+
+            return $ids->all();
+        });
+
+        if (empty($ids)) {
+            return new Collection();
         }
 
-        return $popular;
+        $articles = static::query()
+            ->with(['category', 'featuredImage'])
+            ->whereIn('id', $ids)
+            ->get()
+            ->keyBy('id');
+
+        return collect($ids)
+            ->map(fn ($id) => $articles->get($id))
+            ->filter()
+            ->values();
     }
 
     public function category(): BelongsTo

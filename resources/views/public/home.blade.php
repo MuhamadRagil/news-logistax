@@ -121,6 +121,74 @@
 </section>
 
 <section class="mt-8">
+    <h2 class="text-[19px] font-extrabold text-[#0F172A] tracking-tight mb-3.5">Kategori Pilihan</h2>
+
+    <div class="flex items-start gap-6 sm:gap-8 overflow-x-auto pb-1">
+        @php
+            $categoryIcons = ['pajak' => 'document', 'akuntansi' => 'chart', 'hukum' => 'scale'];
+            $colorCycle = [['#E8F5FB', '#0F4C6C'], ['#E7F7EE', '#16A34A'], ['#F1EAFE', '#7C3AED']];
+
+            $categoryShortcuts = $categories->take(3)->values()->map(function ($category, $index) use ($categoryIcons, $colorCycle) {
+                [$bg, $fg] = $colorCycle[$index % count($colorCycle)];
+
+                return [
+                    'label' => $category->name,
+                    'href' => route('categories.show', $category->slug),
+                    'bg' => $bg,
+                    'fg' => $fg,
+                    'icon' => $categoryIcons[$category->slug] ?? 'document',
+                ];
+            });
+
+            $shortcuts = $categoryShortcuts->concat([
+                ['label' => 'Pengumuman', 'href' => route('home') . '#pengumuman', 'bg' => '#FEF3E2', 'fg' => '#D97706', 'icon' => 'megaphone'],
+                ['label' => 'Opini', 'href' => route('home') . '#opini', 'bg' => '#F1F5F9', 'fg' => '#64748B', 'icon' => 'chat'],
+            ]);
+        @endphp
+
+        @foreach($shortcuts as $shortcut)
+            <a href="{{ $shortcut['href'] }}" class="flex flex-col items-center gap-2 shrink-0 group">
+                <span
+                    class="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full transition-transform group-hover:scale-105"
+                    style="background-color: {{ $shortcut['bg'] }}; color: {{ $shortcut['fg'] }};"
+                >
+                    @if($shortcut['icon'] === 'document')
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+                            <path d="M14 3v5h5M9 13h6M9 17h6" />
+                        </svg>
+                    @elseif($shortcut['icon'] === 'chart')
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 20V10M11 20V4M18 20v-7" />
+                            <path d="M3 20h18" />
+                        </svg>
+                    @elseif($shortcut['icon'] === 'scale')
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v18M7 21h10" />
+                            <path d="M5 7h6M13 7h6" />
+                            <path d="M5 7 2.5 12a2.5 2.5 0 0 0 5 0L5 7ZM19 7l-2.5 5a2.5 2.5 0 0 0 5 0L19 7Z" />
+                        </svg>
+                    @elseif($shortcut['icon'] === 'megaphone')
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 11v2a2 2 0 0 0 2 2h1l3 5V4l-3 5H5a2 2 0 0 0-2 2Z" />
+                            <path d="M14 8a4 4 0 0 1 0 8M18 5a8 8 0 0 1 0 14" />
+                        </svg>
+                    @else
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12c0 4.42-4.03 8-9 8a9.86 9.86 0 0 1-4-.8L3 20l1.2-3.6A7.9 7.9 0 0 1 3 12c0-4.42 4.03-8 9-8s9 3.58 9 8Z" />
+                            <path d="M8 11h8M8 14h5" />
+                        </svg>
+                    @endif
+                </span>
+                <span class="text-xs font-bold text-[#0F172A] group-hover:text-[#0F4C6C] transition-colors whitespace-nowrap">
+                    {{ $shortcut['label'] }}
+                </span>
+            </a>
+        @endforeach
+    </div>
+</section>
+
+<section class="mt-8">
     @include('public.partials.ad-slot')
 </section>
 
@@ -276,7 +344,7 @@
     @endforeach
 @endif
 
-<section class="mt-8 rounded-2xl bg-[#EEF6FA] p-6 md:p-8">
+<section id="pengumuman" class="mt-8 rounded-2xl bg-[#EEF6FA] p-6 md:p-8 scroll-mt-24">
     <div class="flex items-baseline justify-between mb-4">
         <h2 class="text-xl font-extrabold text-[#0F172A] tracking-tight">Pengumuman &amp; Rilis Pers</h2>
         <a href="{{ route('articles.index') }}" class="text-[13px] font-bold text-[#0F4C6C] hover:text-[#3FA7D6] transition-colors">
@@ -308,7 +376,7 @@
     </div>
 </section>
 
-<section class="mt-8 bg-white border border-[#0F4C6C]/10 rounded-2xl p-5">
+<section id="opini" class="mt-8 bg-white border border-[#0F4C6C]/10 rounded-2xl p-5 scroll-mt-24">
     <h3 class="text-sm uppercase tracking-[0.15em] text-[#0F4C6C]/70">Opini</h3>
     <div class="mt-3 space-y-3">
         @forelse($opinions as $item)

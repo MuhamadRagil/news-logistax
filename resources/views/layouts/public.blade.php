@@ -42,46 +42,54 @@
 <header class="sticky top-0 z-30 border-b border-[#0F4C6C]/15 bg-white/95 backdrop-blur-sm">
     <div class="h-1 w-full bg-gradient-to-r from-[#0F4C6C] via-[#3FA7D6] to-[#0F4C6C]"></div>
 
-    @if(($tickerArticles ?? collect())->isNotEmpty())
-        <div class="bg-[#0F4C6C] text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 py-1.5">
-                <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-[#3FA7D6] px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#0F4C6C]">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0F4C6C]"></span>
-                    Breaking News
-                </span>
-
-                <div class="relative flex-1 overflow-hidden">
-                    <ul class="flex items-center gap-10 whitespace-nowrap animate-ticker">
-                        @foreach($tickerArticles->concat($tickerArticles) as $item)
-                            <li>
-                                <a href="{{ route('articles.show', $item->slug) }}" class="text-sm text-white/90 hover:text-white transition-colors">
-                                    {{ $item->title }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    @endif
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="py-2.5 text-xs text-[#0F4C6C]/70 flex items-center justify-between">
+        <div class="py-1.5 text-[11px] text-[#0F4C6C]/60 flex items-center justify-between">
             <span>{{ now()->format('l, d F Y') }}</span>
             <span class="hidden sm:inline">Official Publication Portal</span>
             <span class="sm:hidden">Logistax Portal</span>
         </div>
 
-        <div class="py-4 flex items-center justify-between gap-4 border-t border-[#0F4C6C]/10">
-            <a href="{{ route('home') }}" class="group flex items-center gap-3 min-w-0">
-                <img
-                    src="{{ asset('images/logo.png') }}"
-                    alt="Logistax"
-                    class="h-10 w-auto md:h-11 object-contain"
-                >
-            </a>
+        <div class="py-3 flex items-center justify-between gap-4 border-t border-[#0F4C6C]/10">
+            <div class="flex items-center gap-6 min-w-0 flex-1">
+                <a href="{{ route('home') }}" class="group shrink-0 flex items-center gap-3">
+                    <img
+                        src="{{ asset('images/logo.png') }}"
+                        alt="Logistax"
+                        class="h-9 w-auto md:h-10 object-contain"
+                    >
+                </a>
 
-            <div class="flex items-center gap-1">
+                <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-[#0F4C6C] overflow-x-auto min-w-0">
+                    <a
+                        class="shrink-0 px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                        href="{{ route('articles.index') }}"
+                    >
+                        Semua Artikel
+                    </a>
+                    @foreach(($navCategories ?? collect()) as $category)
+                        <a
+                            class="shrink-0 px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform whitespace-nowrap"
+                            href="{{ route('categories.show', $category->slug) }}"
+                        >
+                            {{ $category->name }}
+                        </a>
+                    @endforeach
+                    <a
+                        class="shrink-0 px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                        href="{{ route('pages.show', 'about') }}"
+                    >
+                        Tentang
+                    </a>
+                    <a
+                        class="shrink-0 px-3 py-2 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+                        href="{{ route('pages.show', 'contact') }}"
+                    >
+                        Kontak
+                    </a>
+                </nav>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0">
                 <a
                     href="{{ route('search.index') }}"
                     aria-label="Pencarian"
@@ -108,46 +116,42 @@
             </div>
         </div>
 
-        <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-[#0F4C6C] border-t border-[#0F4C6C]/10 overflow-x-auto">
-            <a
-                class="px-3 py-2.5 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
-                href="{{ route('articles.index') }}"
-            >
-                Semua Artikel
-            </a>
-            @foreach(($navCategories ?? collect()) as $category)
-                <a
-                    class="px-3 py-2.5 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform whitespace-nowrap"
-                    href="{{ route('categories.show', $category->slug) }}"
-                >
-                    {{ $category->name }}
-                </a>
-            @endforeach
-            <a
-                class="px-3 py-2.5 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
-                href="{{ route('pages.show', 'about') }}"
-            >
-                Tentang
-            </a>
-            <a
-                class="px-3 py-2.5 rounded-full hover:bg-[#F8FAFC] hover:text-[#0F4C6C] transition-all duration-200 relative after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-px after:bg-[#3FA7D6] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
-                href="{{ route('pages.show', 'contact') }}"
-            >
-                Kontak
-            </a>
-        </nav>
+        @if(($tickerArticles ?? collect())->isNotEmpty() || ($trendingTags ?? collect())->isNotEmpty())
+            <div class="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-4 border-t border-[#0F4C6C]/10 py-2">
+                @if(($tickerArticles ?? collect())->isNotEmpty())
+                    <div class="shrink-0 w-full md:w-auto md:basis-[300px] lg:basis-[360px] flex items-center gap-2 rounded-lg bg-[#0F4C6C] px-3 py-1.5 overflow-hidden">
+                        <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-[#3FA7D6] px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[#0F4C6C]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#0F4C6C]"></span>
+                            Breaking News
+                        </span>
 
-        @if(($trendingTags ?? collect())->isNotEmpty())
-            <div class="hidden md:flex items-center gap-2 text-xs pb-3 pt-2 overflow-x-auto">
-                <span class="shrink-0 text-[#0F4C6C]/60 font-medium">Trending:</span>
-                @foreach($trendingTags as $tag)
-                    <a
-                        href="{{ route('search.index', ['q' => $tag->name]) }}"
-                        class="shrink-0 rounded-full bg-[#E8F5FB] px-3 py-1 text-[#0F4C6C] hover:bg-[#d7ecf9] transition-colors whitespace-nowrap"
-                    >
-                        #{{ $tag->name }}
-                    </a>
-                @endforeach
+                        <div class="relative flex-1 min-w-0 overflow-hidden">
+                            <ul class="flex items-center gap-8 whitespace-nowrap animate-ticker">
+                                @foreach($tickerArticles->concat($tickerArticles) as $item)
+                                    <li>
+                                        <a href="{{ route('articles.show', $item->slug) }}" class="text-xs text-white/90 hover:text-white transition-colors">
+                                            {{ $item->title }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
+                @if(($trendingTags ?? collect())->isNotEmpty())
+                    <div class="hidden md:flex flex-1 min-w-0 items-center gap-2 text-xs overflow-x-auto">
+                        <span class="shrink-0 text-[#0F4C6C]/60 font-medium">Trending:</span>
+                        @foreach($trendingTags as $tag)
+                            <a
+                                href="{{ route('search.index', ['q' => $tag->name]) }}"
+                                class="shrink-0 rounded-full bg-[#E8F5FB] px-3 py-1 text-[#0F4C6C] hover:bg-[#d7ecf9] transition-colors whitespace-nowrap"
+                            >
+                                #{{ $tag->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         @endif
 

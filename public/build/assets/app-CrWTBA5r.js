@@ -1,0 +1,1 @@
+document.addEventListener(`DOMContentLoaded`,()=>{let e=document.querySelector(`[data-mobile-menu-toggle]`),t=document.querySelector(`[data-mobile-menu]`);!e||!t||e.addEventListener(`click`,()=>{let n=t.classList.toggle(`hidden`);e.setAttribute(`aria-expanded`,n?`false`:`true`)})});

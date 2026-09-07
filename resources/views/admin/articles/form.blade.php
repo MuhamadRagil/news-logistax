@@ -134,7 +134,7 @@
     </div>
 
     <div class="rounded-xl bg-white border border-slate-200 p-5 sm:p-6 shadow-sm">
-        <h3 class="text-sm uppercase tracking-[0.16em] text-slate-500">SEO</h3>
+        <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">SEO</h3>
 
         <div class="mt-4 grid md:grid-cols-2 gap-4">
             <input
@@ -175,11 +175,11 @@
     </div>
 
     <div class="flex flex-wrap gap-3">
-        <button class="px-5 py-2.5 rounded-lg bg-[#0F4C6C] text-white font-medium hover:bg-[#0d425d] transition-colors">
+        <button class="px-5 py-2.5 rounded-lg bg-[#0F4C6C] text-white font-bold hover:bg-[#0d425d] transition-colors">
             Save Article
         </button>
 
-        <a href="{{ route('admin.articles.index') }}" class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-colors">
+        <a href="{{ route('admin.articles.index') }}" class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-50 transition-colors">
             Back to list
         </a>
     </div>
@@ -187,13 +187,13 @@
 
 @if($article->exists)
     <section class="mt-8 rounded-xl bg-white border border-slate-200 p-5 sm:p-6 shadow-sm">
-        <h3 class="text-sm uppercase tracking-[0.16em] text-slate-500 mb-4">Workflow Actions</h3>
+        <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500 mb-4">Workflow Actions</h3>
 
         <div class="flex flex-wrap items-center gap-3">
             @can('articles.submit-review')
                 <form method="POST" action="{{ route('admin.articles.submit-review', $article) }}">
                     @csrf
-                    <button class="px-4 py-2 bg-amber-600 text-white text-sm">
+                    <button class="px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-semibold hover:bg-amber-700 transition-colors">
                         Submit Review
                     </button>
                 </form>
@@ -202,7 +202,7 @@
             @can('articles.approve')
                 <form method="POST" action="{{ route('admin.articles.approve', $article) }}">
                     @csrf
-                    <button class="px-4 py-2 bg-indigo-700 text-white text-sm">
+                    <button class="px-4 py-2 rounded-lg bg-indigo-700 text-white text-sm font-semibold hover:bg-indigo-800 transition-colors">
                         Approve
                     </button>
                 </form>
@@ -212,14 +212,14 @@
                 <form method="POST" action="{{ route('admin.articles.schedule', $article) }}" class="flex items-center gap-2">
                     @csrf
                     <input type="datetime-local" name="publish_at" class="rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3FA7D6]/40" required>
-                    <button class="px-4 py-2 bg-slate-700 text-white text-sm">
+                    <button class="px-4 py-2 rounded-lg bg-slate-700 text-white text-sm font-semibold hover:bg-slate-800 transition-colors">
                         Schedule
                     </button>
                 </form>
 
                 <form method="POST" action="{{ route('admin.articles.publish', $article) }}">
                     @csrf
-                    <button class="px-4 py-2 bg-emerald-700 text-white text-sm">
+                    <button class="px-4 py-2 rounded-lg bg-emerald-700 text-white text-sm font-semibold hover:bg-emerald-800 transition-colors">
                         Publish Now
                     </button>
                 </form>

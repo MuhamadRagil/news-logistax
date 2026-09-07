@@ -115,43 +115,43 @@
                 </button>
             </div>
         </div>
+    </div>
 
-        @if(($tickerArticles ?? collect())->isNotEmpty() || ($trendingTags ?? collect())->isNotEmpty())
-            <div class="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-4 border-t border-[#0F4C6C]/10 py-2">
-                @if(($tickerArticles ?? collect())->isNotEmpty())
-                    <div class="shrink-0 w-full md:w-auto md:basis-[300px] lg:basis-[360px] flex items-center gap-2 rounded-lg bg-[#0F4C6C] px-3 py-1.5 overflow-hidden">
-                        <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-[#3FA7D6] px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[#0F4C6C]">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#0F4C6C]"></span>
-                            Breaking News
-                        </span>
+    @if(($tickerArticles ?? collect())->isNotEmpty())
+        <div class="border-t border-[#0F4C6C]/10 bg-[#0F4C6C] text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 py-1.5">
+                <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-[#3FA7D6] px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#0F4C6C]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0F4C6C]"></span>
+                    Breaking News
+                </span>
 
-                        <div class="relative flex-1 min-w-0 overflow-hidden">
-                            <ul class="flex items-center gap-8 whitespace-nowrap animate-ticker">
-                                @foreach($tickerArticles->concat($tickerArticles) as $item)
-                                    <li>
-                                        <a href="{{ route('articles.show', $item->slug) }}" class="text-xs text-white/90 hover:text-white transition-colors">
-                                            {{ $item->title }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                @endif
-
-                @if(($trendingTags ?? collect())->isNotEmpty())
-                    <div class="hidden md:flex flex-1 min-w-0 items-center gap-2 text-xs overflow-x-auto">
-                        <span class="shrink-0 text-[#0F4C6C]/60 font-medium">Trending:</span>
-                        @foreach($trendingTags as $tag)
-                            <a
-                                href="{{ route('search.index', ['q' => $tag->name]) }}"
-                                class="shrink-0 rounded-full bg-[#E8F5FB] px-3 py-1 text-[#0F4C6C] hover:bg-[#d7ecf9] transition-colors whitespace-nowrap"
-                            >
-                                #{{ $tag->name }}
-                            </a>
+                <div class="relative flex-1 overflow-hidden">
+                    <ul class="flex items-center gap-10 whitespace-nowrap animate-ticker">
+                        @foreach($tickerArticles->concat($tickerArticles) as $item)
+                            <li>
+                                <a href="{{ route('articles.show', $item->slug) }}" class="text-sm text-white/90 hover:text-white transition-colors">
+                                    {{ $item->title }}
+                                </a>
+                            </li>
                         @endforeach
-                    </div>
-                @endif
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        @if(($trendingTags ?? collect())->isNotEmpty())
+            <div class="hidden md:flex items-center gap-2 text-xs pb-3 pt-2 overflow-x-auto">
+                <span class="shrink-0 text-[#0F4C6C]/60 font-medium">Trending:</span>
+                @foreach($trendingTags as $tag)
+                    <a
+                        href="{{ route('search.index', ['q' => $tag->name]) }}"
+                        class="shrink-0 rounded-full bg-[#E8F5FB] px-3 py-1 text-[#0F4C6C] hover:bg-[#d7ecf9] transition-colors whitespace-nowrap"
+                    >
+                        #{{ $tag->name }}
+                    </a>
+                @endforeach
             </div>
         @endif
 
